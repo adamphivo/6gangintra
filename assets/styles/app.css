@@ -1,0 +1,26 @@
+/* Fonts */
+
+/* font-family: 'Syne Mono', monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+
+/* font-family: 'Roboto Mono', monospace; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+:root {
+    --logo-font: 'Syne Mono', monospace;
+    --section-font: 'Roboto Mono', monospace;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: none;
+}
+
+body {
+    background-color: rgb(5, 14, 34);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+

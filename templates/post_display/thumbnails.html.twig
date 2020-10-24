@@ -1,0 +1,99 @@
+{% block displayLastPosts %}
+    <style>
+        .thumbnailsContainer {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        .thumbnail {
+            width: 80%;
+            margin-bottom: 5em;
+            height: 30%;
+            background-color: #182533;
+            box-shadow: 1px 1px 8px black;
+            padding: 02em;
+            border-radius: 5px;
+        }
+
+        .codeBlock {
+            width: 95%;
+            border-radius: 5px;
+        }
+
+        .title {
+            font-size: 1.5em;
+            font-family: monospace;
+            text-align: left;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+
+        .description {
+            margin-top: 3em;
+            font-family: 'Roboto Mono', monospace;
+            text-align: justify;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sectionTitle {
+            font-size: 3em;
+            margin-left: 2em;
+            text-shadow: 1px 1px 2px darkgray;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .date {
+            font-family: 'Roboto Mono', monospace;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+        
+        .authorName {
+            font-family: monospace;
+        }
+
+        .portrait {
+            border-radius: 5px;
+            box-shadow: 1px 1px 10px black;
+        }
+
+        .sectionIcon {
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .experience {
+            font-family: monospace;
+        }
+
+    </style>
+    <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/gruvbox-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js">
+    </script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    {# Random Article Rander #}
+    <p class="sectionIcon"><span> 🎲 </span></p>
+    <div class="thumbnailsContainer">
+            <div class="thumbnail">
+                <img  class="portrait" src={{ post.User.portraitUrl }} alt="portrait"></img>
+                <p class="authorName">👉 {{ post.User.userName }}</p>
+                <p class="experience">🎉 {{ post.User.Experience }}</p>
+                <p class="date">{{ post.dateAdded|date("d M Y H:i")}}
+                <h2 class="title">🎫 {{ post.title }}</h2>
+                {% if post.codeContent %}
+                    <div class="codeBlock">
+                        <pre><code class="codeBlock">{{ post.codeContent }}</code></pre>
+                    </div>
+                {% endif %}
+                {% if post.textContent %}
+                    <p class="description">{{ post.TextContent }}</p>
+                {% endif %} 
+            </div>
+     </div>
+{% endblock %}
