@@ -56,6 +56,16 @@ class Post
      */
     private $mainTextContent;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $githubLink;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $youtubeLink;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -167,6 +177,30 @@ class Post
     public function setMainTextContent(?string $mainTextContent): self
     {
         $this->mainTextContent = $mainTextContent;
+
+        return $this;
+    }
+
+    public function getGithubLink(): ?string
+    {
+        return $this->githubLink;
+    }
+
+    public function setGithubLink(?string $githubLink): self
+    {
+        $this->githubLink = $githubLink;
+
+        return $this;
+    }
+
+    public function getYoutubeLink(): ?string
+    {
+        return $this->youtubeLink;
+    }
+
+    public function setYoutubeLink(?string $youtubeLink): self
+    {
+        $this->youtubeLink = $youtubeLink;
 
         return $this;
     }

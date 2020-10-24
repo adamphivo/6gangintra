@@ -53,6 +53,8 @@ class AppFixtures extends Fixture
             $posts[$i]->setCodeContent($indenter->indent($faker->randomHtml(2,3)));
             $posts[$i]->setDateAdded($faker->dateTimeThisYear());
             $posts[$i]->setTextContent($faker->realText);
+            $posts[$i]->setGithubLink($faker->url);
+            $posts[$i]->setYoutubeLink($faker->url);
             $posts[$i]->setMainTextContent($faker->realText);
             $posts[$i]->setUser($users[rand(0, count($users) - 1)]);
             $posts[$i]->getUser()->addPost($posts[$i]);
