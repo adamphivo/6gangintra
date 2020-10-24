@@ -9,10 +9,10 @@ use App\Repository\PostRepository;
 
 class PostDisplayController extends AbstractController
 {
-    public function displayLasts(PostRepository $postRepo): Response
+    public function displayRandomPost(PostRepository $postRepo): Response
     {
 
-        return $this->render('post_display/thumbnails.html.twig', [
+        return $this->render('randomPost/thumbnails.html.twig', [
             'post' => $postRepo->getOneRandomly(),
         ]);
     }
