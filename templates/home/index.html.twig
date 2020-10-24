@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ render(controller('App\\Controller\\PostDisplayController::displayRandomPost'))}}
+    {{ render(controller('App\\Controller\\StatsController::displayLeaderBoard')) }}
+    {{ render(controller('App\\Controller\\PostDisplayController::displayRandomPost')) }}
 {% endblock %}

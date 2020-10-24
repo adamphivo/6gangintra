@@ -4,13 +4,29 @@
 
         .logoContainer {
             padding: 0;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 10px;
         }
-        .homeLogo {
-            font-family: var(--logo-font);
+
+        .logoContainer li {
+            list-style: none;
             margin: 0;
             padding: 0;
-            font-size: 3em;
-            padding-left: 10px;
+        }
+
+        .linkContainer {
+            padding: 0;
+            padding-left: 3em;
+            line-height: 2em;
+            font-family: var(--logo-font);
+        }
+
+        .homeLogo {
+            font-family: var(--logo-font);
+            font-size: 2.5em;
+            padding-left: 0.2em;
+            margin: 0;
         }
         .intra {
             font-family: monospace;
@@ -22,5 +38,13 @@
     {# Logo #}
     <div class="logoContainer">
         <h1 class="homeLogo">6gang<span class="intra">intra</span></h1>
+        <ul class="linkContainer">
+            <li>\connect</li>
+            <li>\posts</li>
+            <li>\news</li>
+            <li>\stats</li>
+            <li>\api</li>
+            <li>\doc</li>
+        </ul>
     </div>
 {% endblock %}

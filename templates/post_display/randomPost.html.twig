@@ -8,7 +8,7 @@
         }
 
         .thumbnail {
-            width: 80%;
+            width: 60%;
             margin-bottom: 5em;
             height: 30%;
             background-color: #182533;
@@ -87,24 +87,26 @@
         }
 
     </style>
+
+    {# Code highlighter - highlightJS#}
+        {# Style #}
     <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/atom-one-dark.min.css">
+        {# Module #}
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js">
     </script>
+        {# Execution #}
     <script>hljs.initHighlightingOnLoad();</script>
 
-    {# Random Article Rander #}
+    {# Random Article #}
     <p class="sectionIcon"><span> 🎲 </span></p>
     <div class="thumbnailsContainer">
         <div class="thumbnail">
             <h2 class="title">🎫 {{ post.title }}</h2>
             {# User Info #}
-            <img  class="portrait" src={{ post.User.portraitUrl }} alt="{{post.User.id}}"></img>
-            <p class="authorName">🥳 {{ post.User.userName }}</p>
-            <p class="experience">🎉 {{ post.User.Experience }}</p>
-
+            <p class="authorName">🥳 {{ post.User.userName }} | 🎉 {{ post.User.Experience }}</p>
             {# Post Body #}
-            <p class="date">{{ post.dateAdded|date("d M Y H:i")}}
+            <p class="date">{{ post.dateAdded|date("d M Y H:i")}}</p>
             {% if post.codeContent %}
                 <div class="codeBlock">
                     <pre><code class="codeBlock">{{ post.codeContent }}</code></pre>

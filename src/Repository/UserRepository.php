@@ -63,4 +63,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $all[rand(count($all))];
     }
 
+    public function getLeaderBoard()
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.experience', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 }

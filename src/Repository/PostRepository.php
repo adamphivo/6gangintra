@@ -28,11 +28,10 @@ class PostRepository extends ServiceEntityRepository
 
     public function getLasts(int $limit) {
         return $this->createQueryBuilder('p')
-        ->orderBy('p.dateAdded', 'ASC')
+        ->orderBy('p.dateAdded', 'DESC')
         ->getQuery()
         ->setMaxResults($limit)
         ->getResult();
-
     }
 
     public function getOneRandomly(): ?Post
