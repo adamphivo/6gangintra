@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PostRepository;
 use App\Repository\CommentRepository;
 
+
 class PostDisplayController extends AbstractController
 {
     // Render a single post, semi-extensive
@@ -18,6 +19,18 @@ class PostDisplayController extends AbstractController
         return $this->render('post_display/randomPost.html.twig', [
             'post' => $post,
             'comments' => $comments,
+        ]);
+    }
+
+    // Render all posts sorted by newest first
+    /**
+     * @Route("/posts/latestsposts", name="latest_spots")
+     */
+    public function displayLastsPost(PostRepository $postRepo, CommentRepository $commentRepo)
+    {
+        $posts = $postRepo->getAll();
+        return $this->render('post_display/list.html.twig', [
+            'latestPosts' => $posts,
         ]);
     }
 }

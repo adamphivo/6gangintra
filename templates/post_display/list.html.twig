@@ -1,4 +1,6 @@
-{% block postStat %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <style>
     .statsContainer {
         display: flex;
@@ -6,27 +8,6 @@
         flex-wrap: none;
         justify-content: space-evenly;
         text-align: center;
-    }
-
-    .link {
-        color: white;
-        text-decoration: none;
-    }
-
-    .leaderBoard {
-        font-family: var(--logo-font);
-        margin-top: 1em;
-    }
-
-    .leaderBoard ol {
-        list-style-type: none;
-        padding: 0;
-        margin-top: 1em;
-        margin-bottom: 1em;
-        line-height: 2em;
-    }
-
-    .latestPosts {
         font-family: var(--logo-font);
     }
 
@@ -38,9 +19,9 @@
         box-shadow: 1px 1px 8px black;
         border-radius: 5px;
         font-family: monospace;
-        padding-top: 1em;
+        margin-top: 8em;
+        padding-top: 2em;
         padding-bottom: 2em;
-
     }
 
     .postTitle {
@@ -63,28 +44,16 @@
         color: black;
         padding: 0.4em;
     }
-
 </style>
-
-<div class="statsContainer">
+{# All latest posts #}
     <div class="latestPosts">
-        <h2><a class="link" href={{ path('latest_spots')}}>Latest Posts</a></h2>
             <ol>
                 {% for post in latestPosts %}
                 <p class="date">{{ post.dateAdded|date("d/m/Y \a\t H:i") }}</p>
-                <p class="postTitle">🎫 <span class="lPtitle">{{ post.title }}</span> by 
+                <p class="postTitle"><span class="lPtitle">{{ post.title }}</span> by 
                     <span class="lPuserName">🥳 {{ post.user.userName }}</span>
                 </p>
                 {% endfor %}
             </ol>
     </div>
-    <div class="leaderBoard">
-        <h2>🎉 leaderboard</h2>
-        <ol>
-            {% for user in leaderBoard %}
-                <li>{{ user.userName }} | {{ user.experience }}</li>
-            {% endfor %}
-        </ol>
-    </div>
-</div>
 {% endblock %}
