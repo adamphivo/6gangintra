@@ -26,7 +26,6 @@
             font-size: 1.5em;
             font-family: monospace;
             text-align: left;
-            margin-top: 2em;
             margin-bottom: 2em;
         }
 
@@ -61,6 +60,8 @@
         .portrait {
             border-radius: 5px;
             box-shadow: 1px 1px 10px black;
+            width: 60px;
+            height: 60px;
         }
 
         .sectionIcon {
@@ -96,14 +97,14 @@
     <p class="sectionIcon"><span> 🎲 </span></p>
     <div class="thumbnailsContainer">
         <div class="thumbnail">
+            <h2 class="title">🎫 {{ post.title }}</h2>
             {# User Info #}
-            <img  class="portrait" src={{ post.User.portraitUrl }} alt="portrait"></img>
+            <img  class="portrait" src={{ post.User.portraitUrl }} alt="{{post.User.id}}"></img>
             <p class="authorName">🥳 {{ post.User.userName }}</p>
             <p class="experience">🎉 {{ post.User.Experience }}</p>
 
             {# Post Body #}
             <p class="date">{{ post.dateAdded|date("d M Y H:i")}}
-            <h2 class="title">🎫 {{ post.title }}</h2>
             {% if post.codeContent %}
                 <div class="codeBlock">
                     <pre><code class="codeBlock">{{ post.codeContent }}</code></pre>

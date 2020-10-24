@@ -38,7 +38,7 @@ class AppFixtures extends Fixture
             $users[$i] = new User();
             $users[$i]->setExperience($faker->numberBetween($min = 0, $max = 1000));
             $users[$i]->setEmail($faker->email);
-            $users[$i]->setPortraitUrl("https://picsum.photos/120/120/?blur");
+            $users[$i]->setPortraitUrl("https://picsum.photos/60/60/");
             $users[$i]->setUserName($faker->userName);
             $users[$i]->setPassword($this->encoder->encodePassword($users[$i],$faker->password));
 
