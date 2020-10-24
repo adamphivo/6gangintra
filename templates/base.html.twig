@@ -8,21 +8,12 @@
         {% endblock %}
     </head>
     <body>
-        <style>
-            .anchor {
-                font-size: 5em;
-                margin-left: 2em;
-                letter-spacing: 0.2em;
-                font-family: monospace;
-            }
-
-            .tag {
-                font-family: cursive;
-                font-size: 0.6em;
-            }
-        </style>
+        {# Navigation #}
         {{ render(controller('App\\Controller\\NavigationBarController::index'))}}
+
+        {# Body #}
         {% block body %}{% endblock %}
+
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
