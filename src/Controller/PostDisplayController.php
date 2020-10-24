@@ -22,15 +22,40 @@ class PostDisplayController extends AbstractController
         ]);
     }
 
+    // List Controle
+
     // Render all posts sorted by newest first
+
     /**
-     * @Route("/posts/latestsposts", name="latest_spots")
+     * @Route("/posts", name="latest_spots")
      */
-    public function displayLastsPost(PostRepository $postRepo, CommentRepository $commentRepo)
+    public function displayAsList(PostRepository $postRepo, CommentRepository $commentRepo)
     {
         $posts = $postRepo->getAll();
         return $this->render('post_display/list.html.twig', [
-            'latestPosts' => $posts,
+            'posts' => $posts,
+        ]);
+    }
+
+    /**
+     * @Route("/posts/{id}", name="full_post")
+     */
+    public function displaySpecificArticle(PostRepository $postRepo, CommentRepository $commentRepo, int $id)
+    {
+        $post = $postRepo->getById($id);
+        $comments = $commentRepo->findCommentsByPostId($post->getId());
+        dump($post);
+        return $this->render('post_display/fullPost.html.twig', [
+            'comments' => $comments,
+            'post' => $post,
+        ]);
+    }
+
+    public function lastFive(PostRepository $postRepo, CommentRepository $commentRepo)
+    {
+        $posts = $postRepo->getLasts(5);
+        return $this->render('post_display/listModule.html.twig', [
+            'posts' => $posts,
         ]);
     }
 }

@@ -12,8 +12,7 @@ class StatsController extends AbstractController
 {
     public function displayLeaderBoard(PostRepository $postRepo, UserRepository $userRepo): Response
     {
-        return $this->render('stats/index.html.twig', [
-            'latestPosts' => $postRepo->getLasts(5),
+        return $this->render('stats/leaderboard.html.twig', [
             'leaderBoard' => $userRepo->getLeaderBoard(),
         ]);
     }

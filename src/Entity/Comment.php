@@ -34,6 +34,11 @@ class Comment
      */
     private $post;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateAdded;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,18 @@ class Comment
     public function setPost(?Post $post): self
     {
         $this->post = $post;
+
+        return $this;
+    }
+
+    public function getDateAdded(): ?\DateTime
+    {
+        return $this->dateAdded;
+    }
+
+    public function setDateAdded(\DateTime $dateAdded): self
+    {
+        $this->dateAdded = $dateAdded;
 
         return $this;
     }

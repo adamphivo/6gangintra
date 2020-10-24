@@ -1,10 +1,13 @@
-{% block displayLastPosts %}
+
+{% extends 'base.html.twig' %}
+{% block body %}
     <style>
         .thumbnailsContainer {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-evenly;
+            margin-top: 5em;
         }
 
         .thumbnail {
@@ -58,6 +61,13 @@
             color: rgb(66, 108, 245);
         }
 
+        .authorNameComments {
+            font-family: monospace;
+            font-size: 1em;
+            color: rgb(66, 108, 245);
+            text-align: left;
+        }
+
         .portrait {
             border-radius: 5px;
             box-shadow: 1px 1px 10px black;
@@ -91,6 +101,32 @@
             color: white;
         }
 
+        .commentContainer {
+            color: whitesmoke;
+            font-size: 1.2em;
+            text-align: left;
+            width: 80%;
+            margin-bottom: 2em;
+        }
+
+        .commentSectionTitle {
+            text-align: left;
+        }
+
+        .mainTextContent {
+            color: white;
+            font-size: 1.5em;
+            font-family: var(--logo-font);
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .commentDateAdded {
+            text-align: left;
+            color: white;
+            font-family: monospace;
+        }
+
     </style>
 
     {# Code highlighter - highlightJS#}
@@ -103,11 +139,10 @@
         {# Execution #}
     <script>hljs.initHighlightingOnLoad();</script>
 
-    {# Random Article #}
-    <p class="sectionIcon"><span> 🎲 </span></p>
+    {# One Article #}
     <div class="thumbnailsContainer">
         <div class="thumbnail">
-            <h2 class="title"><a href="/posts/{{ post.id }}"> {{ post.title }}</a></h2>
+            <h2 class="title"> {{ post.title }}</h2>
             {# User Info #}
             <p class="authorName">
                 {{ post.User.userName }}
@@ -115,7 +150,7 @@
                     ({{ post.User.Experience }})
                 </span>
             </p> 
-            {# Post Description #}
+            {# Post Body #}
             <p class="date">{{ post.dateAdded|date("d M Y H:i")}}</p>
             {% if post.codeContent %}
                 <div class="codeBlock">
@@ -124,23 +159,27 @@
             {% endif %}
             {% if post.textContent %}
                 <p class="description">{{ post.TextContent }}</p>
+            {% endif %}
+            {# Main text content #}
+            {% if post.mainTextContent %}
+                <p class="mainTextContent">{{ post.mainTextContent }}</p>
             {% endif %} 
 
             {# Comments #}
             <div class="commentPreview">
-                <a href="#">
                     {% if comments|length == 0 %}
                     <p>There is no comment for this post yet. Be the first to evalutate this post.</p>
                     {% endif %}
                     {% if comments %}
-                        {% if comments|length == 1 %}
-                            <p><a href="/posts/{{ post.id }}">There is one comment for this post.</a></p>
-                        {% endif %}
-                        {% if comments|length > 1 %}
-                            <p><a href="/posts/{{ post.id }}">There are {{ comments|length }} comments for this post<a></p>
-                        {% endif %}
+                        <h2 class="commentSectionTitle">commentaires</h2>
+                        <div>
+                            {% for comment in comments %}
+                                <p class="authorNameComments">{{ comment.user.userName}}</p>
+                                <p class="commentDateAdded">{{ comment.dateAdded|date("d M Y H:i") }}</p>
+                                <p class="commentContainer">{{ comment.textContent }}</p>
+                            {% endfor %}
+                        </div>
                     {% endif %}
-                </a>
             </div>
         </div>
      </div>

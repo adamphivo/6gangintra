@@ -26,6 +26,14 @@ class PostRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    public function getById(int $id) {
+        return $this->createQueryBuilder('p')
+        ->where('p.id = :id')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getSingleResult();
+    }
+
     public function getLasts(int $limit) {
         return $this->createQueryBuilder('p')
         ->orderBy('p.dateAdded', 'DESC')

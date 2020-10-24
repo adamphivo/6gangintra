@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ render(controller('App\\Controller\\StatsController::displayLeaderBoard')) }}
+<style>
+    .homeStatsContainer {
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+</style>
+
+
+    {{ render(controller('App\\Controller\\PostDisplayController::lastFive')) }}
+    <div class="homeStatsContainer">
+        {{ render(controller('App\\Controller\\StatsController::displayLeaderBoard')) }}
+    </div>
     {{ render(controller('App\\Controller\\PostDisplayController::displayRandomPost')) }}
 {% endblock %}

@@ -51,6 +51,11 @@ class Post
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $mainTextContent;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -150,6 +155,18 @@ class Post
                 $comment->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMainTextContent(): ?string
+    {
+        return $this->mainTextContent;
+    }
+
+    public function setMainTextContent(?string $mainTextContent): self
+    {
+        $this->mainTextContent = $mainTextContent;
 
         return $this;
     }

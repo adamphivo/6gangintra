@@ -53,6 +53,7 @@ class AppFixtures extends Fixture
             $posts[$i]->setCodeContent($indenter->indent($faker->randomHtml(2,3)));
             $posts[$i]->setDateAdded($faker->dateTimeThisYear());
             $posts[$i]->setTextContent($faker->realText);
+            $posts[$i]->setMainTextContent($faker->realText);
             $posts[$i]->setUser($users[rand(0, count($users) - 1)]);
             $posts[$i]->getUser()->addPost($posts[$i]);
 
@@ -66,6 +67,7 @@ class AppFixtures extends Fixture
             $comments[$i]->setUser($users[rand(0, count($users) - 1)]);
             $comments[$i]->setPost($posts[rand(0, count($posts) - 1)]);
             $comments[$i]->setTextContent($faker->realText);
+            $comments[$i]->setDateAdded($faker->dateTimeThisYear());
 
             $manager->persist($comments[$i]);
         }
