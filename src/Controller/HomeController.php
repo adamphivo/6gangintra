@@ -9,7 +9,7 @@ use App\Repository\PostRepository;
 
 
 /**
- * @Route("/", name="home")
+ * @Route("/")
  */
 class HomeController extends AbstractController
 {

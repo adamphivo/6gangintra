@@ -10,7 +10,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Post;
 use App\Entity\User;
+use App\Entity\Comment;
 use App\Repository\UserRepository;
+use App\Repository\CommentRepository;
 use Faker;
 use Indenter;
 
@@ -45,18 +47,30 @@ class AppFixtures extends Fixture
 
         // Populate posts
         $posts = Array();
-        for($i = 0; $i < 500; $i++){
+        for($i = 0; $i < 200; $i++){
             $posts[$i] = new Post();
             $posts[$i]->setTitle($faker->catchPhrase);
             $posts[$i]->setCodeContent($indenter->indent($faker->randomHtml(2,3)));
             $posts[$i]->setDateAdded($faker->dateTimeThisYear());
             $posts[$i]->setTextContent($faker->realText);
-            $posts[$i]->setUser($users[rand(1, count($users)) - 1]);
+            $posts[$i]->setUser($users[rand(0, count($users) - 1)]);
+            $posts[$i]->getUser()->addPost($posts[$i]);
 
             $manager->persist($posts[$i]);
         }
 
-        // Make changes
+        // Populate comments
+        $comments = Array();
+        for($i = 0; $i < 500; $i++){
+            $comments[$i] = new Comment();
+            $comments[$i]->setUser($users[rand(0, count($users) - 1)]);
+            $comments[$i]->setPost($posts[rand(0, count($posts) - 1)]);
+            $comments[$i]->setTextContent($faker->realText);
+
+            $manager->persist($comments[$i]);
+        }
+
+        // // Make changes
         $manager->flush();
     }
 }

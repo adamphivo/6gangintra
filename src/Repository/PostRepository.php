@@ -41,7 +41,6 @@ class PostRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-        dump($all[rand(0,count($all))]);
-        return $all[rand(0,count($all))];
+        return $all[rand(0,count($all) - 1)];
     }
 }

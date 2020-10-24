@@ -32,6 +32,7 @@
 
         .description {
             margin-top: 3em;
+            margin-bottom: 3em;
             font-family: 'Roboto Mono', monospace;
             text-align: justify;
             width: 70%;
@@ -54,6 +55,7 @@
         
         .authorName {
             font-family: monospace;
+            font-size: 1.5em;
         }
 
         .portrait {
@@ -69,10 +71,23 @@
         .experience {
             font-family: monospace;
         }
+        
+        .commentPreview {
+            font-family : monospace;
+            text-align: center;
+            margin-top: 2em;
+            margin-bottom: 1em;
+            border-top: 1px solid white;
+            padding-top: 1em;
+        }
+
+        .commentPreview a {
+            color: white;
+        }
 
     </style>
     <link rel="stylesheet"
-        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/gruvbox-light.min.css">
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js">
     </script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -80,20 +95,40 @@
     {# Random Article Rander #}
     <p class="sectionIcon"><span> 🎲 </span></p>
     <div class="thumbnailsContainer">
-            <div class="thumbnail">
-                <img  class="portrait" src={{ post.User.portraitUrl }} alt="portrait"></img>
-                <p class="authorName">👉 {{ post.User.userName }}</p>
-                <p class="experience">🎉 {{ post.User.Experience }}</p>
-                <p class="date">{{ post.dateAdded|date("d M Y H:i")}}
-                <h2 class="title">🎫 {{ post.title }}</h2>
-                {% if post.codeContent %}
-                    <div class="codeBlock">
-                        <pre><code class="codeBlock">{{ post.codeContent }}</code></pre>
-                    </div>
-                {% endif %}
-                {% if post.textContent %}
-                    <p class="description">{{ post.TextContent }}</p>
-                {% endif %} 
+        <div class="thumbnail">
+            {# User Info #}
+            <img  class="portrait" src={{ post.User.portraitUrl }} alt="portrait"></img>
+            <p class="authorName">🥳 {{ post.User.userName }}</p>
+            <p class="experience">🎉 {{ post.User.Experience }}</p>
+
+            {# Post Body #}
+            <p class="date">{{ post.dateAdded|date("d M Y H:i")}}
+            <h2 class="title">🎫 {{ post.title }}</h2>
+            {% if post.codeContent %}
+                <div class="codeBlock">
+                    <pre><code class="codeBlock">{{ post.codeContent }}</code></pre>
+                </div>
+            {% endif %}
+            {% if post.textContent %}
+                <p class="description">{{ post.TextContent }}</p>
+            {% endif %} 
+
+            {# Comments #}
+            <div class="commentPreview">
+                <a href="#">
+                    {% if comments|length == 0 %}
+                    <p>There is no comment for this post yet. Be the first to evalutate this post.</p>
+                    {% endif %}
+                    {% if comments %}
+                        {% if comments|length == 1 %}
+                            <p>There is one comment for this post.</p>
+                        {% endif %}
+                        {% if comments|length > 1 %}
+                            <p>There are {{ comments|length }} comments for this post</p>
+                        {% endif %}
+                    {% endif %}
+                </a>
             </div>
+        </div>
      </div>
 {% endblock %}
