@@ -12,7 +12,7 @@ class PostDisplayController extends AbstractController
     public function displayRandomPost(PostRepository $postRepo): Response
     {
 
-        return $this->render('randomPost/thumbnails.html.twig', [
+        return $this->render('post_display/randomPost.html.twig', [
             'post' => $postRepo->getOneRandomly(),
         ]);
     }
