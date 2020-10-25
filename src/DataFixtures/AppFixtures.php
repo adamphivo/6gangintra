@@ -36,7 +36,7 @@ class AppFixtures extends Fixture
         $users = Array();
         for($i = 0; $i < 50; $i++){
             $users[$i] = new User();
-            $users[$i]->setExperience($faker->numberBetween($min = 0, $max = 1000));
+            $users[$i]->setExperience($faker->biasedNumberBetween($min = 1000, $max = 0, $function = 'sqrt'));
             $users[$i]->setEmail($faker->email);
             $users[$i]->setPortraitUrl("https://picsum.photos/60/60/");
             $users[$i]->setUserName($faker->userName);
@@ -64,7 +64,7 @@ class AppFixtures extends Fixture
 
         // Populate comments
         $comments = Array();
-        for($i = 0; $i < 500; $i++){
+        for($i = 0; $i < 400; $i++){
             $comments[$i] = new Comment();
             $comments[$i]->setUser($users[rand(0, count($users) - 1)]);
             $comments[$i]->setPost($posts[rand(0, count($posts) - 1)]);

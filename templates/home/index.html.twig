@@ -7,9 +7,24 @@
         flex-direction: row;
         justify-content: center;
     }
+
+    .welcomeSlogan {
+        text-align:center;
+        boder: 1px solid white;
+        font-family: var(--logo-font);
+        margin-top: 3em;
+        font-size: 2em;
+    }
+
 </style>
 
-
+    <div class="welcomeSlogan">
+        <p>Share</p>
+        <p>Comment</p>
+        <p>Review</p>
+        <p>earn</p>
+        <p>🎉</p>
+    </div>
     {{ render(controller('App\\Controller\\PostDisplayController::lastFive')) }}
     <div class="homeStatsContainer">
         {{ render(controller('App\\Controller\\StatsController::displayLeaderBoard')) }}
