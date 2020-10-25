@@ -43,6 +43,25 @@
             font-size: 16px;
             border: 1px solid white;
         }
+
+        .navStamps {
+            width: 40%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 2em;
+        }
+
+        .navStamp {
+            background-color: white;
+            color: black;
+            font-family: monospace;
+            border-radius: 5px;
+            padding: 0.5em;
+            margin: 0.2em;
+        }
+
+
     </style>
 
     {# Logo #}
@@ -55,8 +74,12 @@
             <li><a href="/posts">posts</a></li>
             <li>news</li>
             <li>stats</li>
-            <li>api</li>
             <li>doc</li>
         </ul>
+        <div class="navStamps">
+            {% for category in categories %}
+                <a class="navStamp">{{ category.name }}</a>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

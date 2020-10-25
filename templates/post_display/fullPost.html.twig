@@ -127,6 +127,14 @@
             font-family: monospace;
         }
 
+        .stamp {
+            color: black;
+            background: white;
+            padding: 0.2em;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+
     </style>
 
     {# Code highlighter - highlightJS#}
@@ -143,6 +151,14 @@
     <div class="thumbnailsContainer">
         <div class="thumbnail">
             <h2 class="title"> {{ post.title }}</h2>
+
+            {# Categories #}
+            <div syle="color: black; background:white;">
+                {% for category in post.categories %}
+                    <a class="stamp">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+
             {# User Info #}
             <p class="authorName">
                 {{ post.User.userName }}
@@ -167,19 +183,19 @@
 
             {# Comments #}
             <div class="commentPreview">
-                    {% if comments|length == 0 %}
-                    <p>There is no comment for this post yet. Be the first to evalutate this post.</p>
-                    {% endif %}
-                    {% if comments %}
-                        <h2 class="commentSectionTitle">commentaires</h2>
-                        <div>
-                            {% for comment in comments %}
-                                <p class="authorNameComments">{{ comment.user.userName}}</p>
-                                <p class="commentDateAdded">{{ comment.dateAdded|date("d M Y H:i") }}</p>
-                                <p class="commentContainer">{{ comment.textContent }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                {% if comments|length == 0 %}
+                <p>There is no comment for this post yet. Be the first to evalutate this post.</p>
+                {% endif %}
+                {% if comments %}
+                    <h2 class="commentSectionTitle">commentaires</h2>
+                    <div>
+                        {% for comment in comments %}
+                            <p class="authorNameComments">{{ comment.user.userName}}</p>
+                            <p class="commentDateAdded">{{ comment.dateAdded|date("d M Y H:i") }}</p>
+                            <p class="commentContainer">{{ comment.textContent }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
      </div>

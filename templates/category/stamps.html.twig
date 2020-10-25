@@ -1,0 +1,14 @@
+{% block stamps %}
+<style>
+</style>
+
+{# Stamps #}
+<div>
+    {# Categories #}
+    <div>
+        {% for category in post.categories %}
+            <span>{{ category.name }}</span>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

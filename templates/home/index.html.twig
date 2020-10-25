@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{# Home Page #}
 <style>
     .homeStatsContainer {
         display:flex;
@@ -9,21 +10,22 @@
     }
 
     .welcomeSlogan {
-        text-align:center;
-        boder: 1px solid white;
-        font-family: var(--logo-font);
+        text-align:left;
+        width: 20%;
+        margin-left: auto;
+        margin-right: auto;
         margin-top: 3em;
+        border: 1px solid white;
+        font-family: var(--logo-font);
         font-size: 2em;
+        padding: 1em;
     }
-
 </style>
 
     <div class="welcomeSlogan">
-        <p>Share</p>
-        <p>Comment</p>
-        <p>Review</p>
-        <p>earn</p>
-        <p>🎉</p>
+        <p style="text-align: left;">Post and review</p>
+        <p style="text-align: center;">earn</p>
+        <p style="text-align: right;">🎉</p>
     </div>
     {{ render(controller('App\\Controller\\PostDisplayController::lastFive')) }}
     <div class="homeStatsContainer">

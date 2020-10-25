@@ -53,7 +53,7 @@ class PostDisplayController extends AbstractController
 
     public function lastFive(PostRepository $postRepo, CommentRepository $commentRepo)
     {
-        $posts = $postRepo->getLasts(5);
+        $posts = $postRepo->getLasts(3);
         return $this->render('post_display/listModule.html.twig', [
             'posts' => $posts,
         ]);

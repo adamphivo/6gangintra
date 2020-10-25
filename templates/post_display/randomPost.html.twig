@@ -91,6 +91,14 @@
             color: white;
         }
 
+        .stamp {
+            color: black;
+            background: white;
+            padding: 0.2em;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+
     </style>
 
     {# Code highlighter - highlightJS#}
@@ -108,6 +116,12 @@
     <div class="thumbnailsContainer">
         <div class="thumbnail">
             <h2 class="title"><a href="/posts/{{ post.id }}"> {{ post.title }}</a></h2>
+            {# Categories #}
+            <div syle="color: black; background:white;">
+                {% for category in post.categories %}
+                    <a class="stamp">{{ category.name }}</a>
+                {% endfor %}
+            </div>
             {# User Info #}
             <p class="authorName">
                 {{ post.User.userName }}

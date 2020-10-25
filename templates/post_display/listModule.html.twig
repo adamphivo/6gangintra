@@ -51,6 +51,11 @@
         margin: 1em;
         margin-top: 3em;
     }
+
+    .stampContainer {
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
 </style>
 {# All latest posts #}
     <div class="latestPosts">
@@ -60,6 +65,13 @@
                         <p class="date">{{ post.dateAdded|date("d/m/Y \a\t H:i") }}</p>
                         <a href="/posts/{{ post.id }}"><p class="postTitle">
                         <span class="lPtitle">{{ post.title }}</span></p></a>
+
+                            <div class="stampContainer">
+                                {% for category in post.categories %}
+                                    <a class="stamp">{{ category.name }}</a>
+                                {% endfor %}
+                            </div>
+
                         <a class="lPuserName" href="{{ post.user.id }}">{{ post.user.userName }}</a>
                     </div>
                 {% endfor %}
