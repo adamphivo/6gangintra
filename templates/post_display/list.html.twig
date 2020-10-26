@@ -48,8 +48,9 @@
     .lPtitle {
         background: whitesmoke;
         color: black;
-        padding: 0.4em;
+        padding: 0.5em;
         font-size: 1.5em;
+        margin-top: 1em;
     }
 
     .postListItem {
@@ -86,7 +87,9 @@
                     <div class="postListItem">
                         <p class="date">{{ post.dateAdded|date("d/m/Y \a\t H:i") }}</p>
                         <a href="/posts/{{ post.id }}"><p class="postTitle"><span class="lPtitle">{{ post.title }}</span></p></a>
-
+                            <div>
+                                {{ post.textContent }}
+                            </div>
                             <div class="stampContainer">
                                 {% for category in post.categories %}
                                     <a class="stamp" href="/posts/category/{{ category.name }}">{{ category.name }}</a>

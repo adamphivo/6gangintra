@@ -39,6 +39,11 @@ class Comment
      */
     private $dateAdded;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $codeBlock;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +93,18 @@ class Comment
     public function setDateAdded(\DateTime $dateAdded): self
     {
         $this->dateAdded = $dateAdded;
+
+        return $this;
+    }
+
+    public function getCodeBlock(): ?string
+    {
+        return $this->codeBlock;
+    }
+
+    public function setCodeBlock(?string $codeBlock): self
+    {
+        $this->codeBlock = $codeBlock;
 
         return $this;
     }
