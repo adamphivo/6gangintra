@@ -23,6 +23,16 @@ class PostDisplayController extends AbstractController
         ]);
     }
 
+    // Render X lasts post as a list module
+    public function lastFive(PostRepository $postRepo, CommentRepository $commentRepo)
+    {
+        $posts = $postRepo->getLasts(3);
+        return $this->render('post_display/listModule.html.twig', [
+            'posts' => $posts,
+            'sectionName' => "Latest posts"
+        ]);
+    }
+
     // Render all posts sorted by newest first
     /**
      * @Route("/posts", name="latest_spots")
@@ -55,20 +65,10 @@ class PostDisplayController extends AbstractController
     */
     public function byCategory(PostRepository $postRepo, CategoryRepository $categoryRepo, string $categoryName)
     {   
-        $posts = $postRepo->getByCategory($categoryName);
         $category = $categoryRepo->findOneBy(['name' => $categoryName]);
         return $this->render('post_display/list.html.twig', [
             'posts' => $category->getPosts(),
             'sectionName' => $categoryName
-        ]);
-    }
-
-    public function lastFive(PostRepository $postRepo, CommentRepository $commentRepo)
-    {
-        $posts = $postRepo->getLasts(3);
-        return $this->render('post_display/listModule.html.twig', [
-            'posts' => $posts,
-            'sectionName' => "Latest posts"
         ]);
     }
 }
