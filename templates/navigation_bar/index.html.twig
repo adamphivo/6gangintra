@@ -83,6 +83,26 @@
             font-size: 1.2em;
         }
 
+        .questionHelp {
+            position: fixed;
+            color: black;
+            right: 2em;
+            bottom: 2em;
+            width: 50px;
+            height: 50px;
+            background: black;
+            padding: 0.1em;
+            font-size: 1em;
+            text-align: center;
+            opacity: 20%;
+            transition: 0.2s;
+        }   
+
+        .questionHelp:hover {
+            opacity: 100%;
+            cursor: pointer;
+        }
+
 
     </style>
 
@@ -94,14 +114,16 @@
         <ul class="linkContainer">
             <li><a href="/">home</a></li>
             <li><a href="/posts">posts</a></li>
-            <li>team</li>
-            <li>doc</li>
             <li class="write"><a href={{ path('post_new')}}>✍️</a></li>
         </ul>
         <div class="navStamps">
             {% for category in categories %}
                 <a class="navStamp" href='/posts/category/{{ category.name }}'>{{ category.name }}</a>
             {% endfor %}
+        </div>
+
+        <div class="questionHelp">
+            <p>❓</p>
         </div>
     </div>
 {% endblock %}
