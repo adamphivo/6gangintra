@@ -11,7 +11,7 @@
         font-family: var(--logo-font);
     }
 
-    .latestPosts ol {
+    .posts ol {
         width: 60%;
         font-size: 1em;
         margin-left: auto;
@@ -21,6 +21,7 @@
         border-radius: 5px;
         font-family: monospace;
         margin-top: 3em;
+        margin-bottom: 3em;
         padding-top: 2em;
         padding-bottom: 2em;
     }
@@ -71,11 +72,12 @@
 
     .sectionName {
         font-family: monospace;
-        font-size: 3em;
+        font-size: 2em;
+        text-align: center;
     }
 </style>
-{# All latest posts #}
-    <div class="latestPosts">
+{% include 'search/searchbar.html.twig' %}
+    <div class="posts">
             <ol>
                 {% if sectionName %}
                     <h1 class="sectionName">{{ sectionName }} ({{ posts|length }} results)</h1>

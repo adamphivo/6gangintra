@@ -51,9 +51,22 @@ class PostRepository extends ServiceEntityRepository
         return $all[rand(0,count($all) - 1)];
     }
 
-    public function getByCategory($categoryName) {
+    public function getByCategory(string $categoryName) 
+    {
         return $this->createQueryBuilder('p')
         ->getQuery()
         ->getResult();
+    }
+
+    public function findByString(string $searchString) {
+        return $this->createQueryBuilder('p')
+        ->orWhere('p.title LIKE :word')
+        ->orWhere('p.textContent LIKE :word')
+        ->orWhere('p.mainTextContent LIKE :word')
+        ->orWhere('p.codeContent LIKE :word')
+        ->setParameter('word', '%'.$searchString.'%')
+        ->getQuery()
+        ->getResult()
+        ;
     }
 }

@@ -7,7 +7,7 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-evenly;
-            margin-top: 5em;
+            margin-top: 3em;
         }
 
         .thumbnail {
@@ -148,6 +148,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
 
     {# One Article #}
+    {% include 'search/searchbar.html.twig' %}
     <div class="thumbnailsContainer">
         <div class="thumbnail">
             <h2 class="title"> {{ post.title }}</h2>
@@ -181,7 +182,7 @@
                 <p class="mainTextContent">{{ post.mainTextContent }}</p>
             {% endif %} 
             {% if post.youtubeLink %}
-                <a href="{{ post.youtubeLink }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/YouTube_dark_icon_%282017%29.svg/107px-YouTube_dark_icon_%282017%29.svg.png" style="width: 5em; margin-bottom: 1em;"/></a>
+                <a href="{{ post.youtubeLink }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/OOjs_UI_icon_external-link-ltr.svg/1024px-OOjs_UI_icon_external-link-ltr.svg.png" style="width: 5em; margin-bottom: 1em;"/></a>
             {% endif %}
             {% if post.githubLink %}
                 <a href="{{ post.githubLink }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Git-icon-black.svg/173px-Git-icon-black.svg.png" style="width: 5em; display:block;"/></a>
