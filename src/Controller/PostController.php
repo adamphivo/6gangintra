@@ -73,7 +73,7 @@ class PostController extends AbstractController
             $comment->setUser($userRepo->getOneRandomly());
             $em->persist($comment);
             $em->flush();
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('full_post', array('id' => $id));
         }
 
         return $this->render('post_display/fullPost.html.twig', [

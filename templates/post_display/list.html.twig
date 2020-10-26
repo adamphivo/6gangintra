@@ -28,8 +28,8 @@
 
     .postTitle {
         text-align: left;
-        width: 70%;
-        line-height: 3em;
+        width: 80%;
+        line-height: 4em;
     }
 
     .date {
@@ -48,9 +48,11 @@
     .lPtitle {
         background: whitesmoke;
         color: black;
-        padding: 0.5em;
-        font-size: 1.5em;
-        margin-top: 1em;
+        padding: 1em;
+        font-size: 1.2em;
+        margin-top: 1.2em;
+        font-family: var(--section-font);
+        box-shadow: 3px 3px 2px black;
     }
 
     .postListItem {
@@ -76,6 +78,11 @@
         font-size: 2em;
         text-align: center;
     }
+
+    .keywords {
+        opacity: 40%;
+        width: 50%;
+    }
 </style>
 {% include 'search/searchbar.html.twig' %}
     <div class="posts">
@@ -87,7 +94,7 @@
                     <div class="postListItem">
                         <p class="date">{{ post.dateAdded|date("d/m/Y \a\t H:i") }}</p>
                         <a href="/posts/{{ post.id }}"><p class="postTitle"><span class="lPtitle">{{ post.title }}</span></p></a>
-                            <div>
+                            <div class="keywords">
                                 {{ post.textContent }}
                             </div>
                             <div class="stampContainer">
@@ -96,7 +103,7 @@
                                 {% endfor %}
                             </div>
 
-                        <a class="lPuserName" href="{{ post.user.id }}">{{ post.user.userName }}</a>
+                        <a class="lPuserName" href="{{ post.user.id }}">✍️ {{ post.user.userName }}</a>
                     </div>
                 {% endfor %}
             </ol>
