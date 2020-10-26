@@ -8,9 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PostRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
+use App\Form\PostType;
 
 
-class PostDisplayController extends AbstractController
+class PostController extends AbstractController
 {
     // Render a single post, semi-extensive
     public function displayRandomPost(PostRepository $postRepo, CommentRepository $commentRepo): Response

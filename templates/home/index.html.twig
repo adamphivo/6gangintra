@@ -28,9 +28,9 @@
     <p style="text-align: center;">earn</p>
     <p style="text-align: right;">🎉</p>
 </div>
-{{ render(controller('App\\Controller\\PostDisplayController::lastFive')) }}
+{{ render(controller('App\\Controller\\PostController::lastFive')) }}
 <div class="homeStatsContainer">
     {{ render(controller('App\\Controller\\StatsController::displayLeaderBoard')) }}
 </div>
-{{ render(controller('App\\Controller\\PostDisplayController::displayRandomPost')) }}
+{{ render(controller('App\\Controller\\PostController::displayRandomPost')) }}
 {% endblock %}
