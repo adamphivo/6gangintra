@@ -6,6 +6,7 @@ use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PostType extends AbstractType
 {
@@ -15,12 +16,11 @@ class PostType extends AbstractType
             ->add('title')
             ->add('codeContent')
             ->add('textContent')
-            ->add('dateAdded')
             ->add('mainTextContent')
             ->add('githubLink')
             ->add('youtubeLink')
-            ->add('user')
             ->add('categories')
+            ->add('save', SubmitType::class)
         ;
     }
 

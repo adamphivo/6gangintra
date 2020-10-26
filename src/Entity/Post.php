@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\PostRepository;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
@@ -21,6 +23,8 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $title;
 
@@ -31,6 +35,8 @@ class Post
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Type("string") 
      */
     private $textContent;
 
@@ -52,21 +58,26 @@ class Post
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $mainTextContent;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url
      */
     private $githubLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url
      */
     private $youtubeLink;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="posts")
+     * @Assert\NotBlank
      */
     private $categories;
 
@@ -74,6 +85,7 @@ class Post
     {
         $this->comments = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->dateAdded = new \DateTimeImmutable();
     }
 
     // public function __construct()

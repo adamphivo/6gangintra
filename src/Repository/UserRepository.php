@@ -36,13 +36,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    public function getOneRandomly($value): ?User
+    public function getOneRandomly(): ?User
     {
         $all = $this->createQueryBuilder('u')
             ->getQuery()
             ->getResult()
         ;
-        return $all[rand(count($all))];
+        return $all[rand(0,count($all) - 1)];
     }
 
     public function getLeaderBoard()

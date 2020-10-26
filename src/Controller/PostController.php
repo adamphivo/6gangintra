@@ -4,10 +4,14 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PostRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\UserRepository;
+use App\Entity\Post;
+use App\Entity\Category;
 use App\Form\PostType;
 
 
@@ -48,7 +52,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/posts/{id}", name="full_post")
+     * @Route("/posts/{id}", name="full_post", requirements={"id"="\d+"})
      */
     public function displaySpecificArticle(PostRepository $postRepo, CommentRepository $commentRepo, int $id)
     {
@@ -58,6 +62,7 @@ class PostController extends AbstractController
         return $this->render('post_display/fullPost.html.twig', [
             'comments' => $comments,
             'post' => $post,
+            'categories' => $post->getCategories(),
         ]);
     }
 
@@ -71,5 +76,36 @@ class PostController extends AbstractController
             'posts' => $category->getPosts(),
             'sectionName' => $categoryName
         ]);
+    }
+
+    /**
+     * @Route("/posts/new", name="post_new")
+     */
+    public function newPost(Request $request, UserRepository $userRepo)
+    {
+        $post = new Post();
+
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $post = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+
+            // a random user is chosen
+            $post->setUser($userRepo->getOneRandomly());
+            
+            $em->persist($post);
+            $em->flush();
+
+            return $this->render('dumper/dump.html.twig', [
+                'data' => $post,
+            ]);
+        }
+
+        return $this->render('post_display/newPost.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
     }
 }

@@ -1,0 +1,29 @@
+{# New Post Form Template #}
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<style>
+    .formContainer {
+        width: 60%;
+        margin-bottom: 5em;
+        height: 30%;
+        background-color: #182533;
+        box-shadow: 1px 1px 8px black;
+        padding: 02em;
+        border-radius: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3em;
+        text-align: center;
+    }
+</style>
+
+<div class="formContainer">
+    {# Custom Template #}
+    {{ form_start(form) }}
+        <div>
+            {{ form_errors(form) }}
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

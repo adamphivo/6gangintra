@@ -153,8 +153,9 @@
             <h2 class="title"> {{ post.title }}</h2>
 
             {# Categories #}
-            <div syle="color: black; background:white;">
-                {% for category in post.categories %}
+            <div>
+                {{ dump(categories) }}
+                {% for category in categories %}
                     <a class="stamp" href="/posts/category/{{ category.name }}">{{ category.name }}</a>
                 {% endfor %}
             </div>
