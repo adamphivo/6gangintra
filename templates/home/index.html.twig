@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{# Home Page #}
+{# Style #}
 <style>
     .homeStatsContainer {
         display:flex;
@@ -22,14 +22,15 @@
     }
 </style>
 
-    <div class="welcomeSlogan">
-        <p style="text-align: left;">Post and review</p>
-        <p style="text-align: center;">earn</p>
-        <p style="text-align: right;">🎉</p>
-    </div>
-    {{ render(controller('App\\Controller\\PostDisplayController::lastFive')) }}
-    <div class="homeStatsContainer">
-        {{ render(controller('App\\Controller\\StatsController::displayLeaderBoard')) }}
-    </div>
-    {{ render(controller('App\\Controller\\PostDisplayController::displayRandomPost')) }}
+{# Home page #}
+<div class="welcomeSlogan">
+    <p style="text-align: left;">Post/Review/Comment</p>
+    <p style="text-align: center;">earn</p>
+    <p style="text-align: right;">🎉</p>
+</div>
+{{ render(controller('App\\Controller\\PostDisplayController::lastFive')) }}
+<div class="homeStatsContainer">
+    {{ render(controller('App\\Controller\\StatsController::displayLeaderBoard')) }}
+</div>
+{{ render(controller('App\\Controller\\PostDisplayController::displayRandomPost')) }}
 {% endblock %}

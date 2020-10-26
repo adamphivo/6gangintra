@@ -54,7 +54,6 @@ class AppFixtures extends Fixture
             "noSQL" => "related to noSQL",
             "design" => "related to noDesign",
             "architecture" => "related to architecture",
-            "testhlggesgsg" => "sdgsdgtest",
         ];
 
         $categoriesArray = Array();
@@ -88,7 +87,7 @@ class AppFixtures extends Fixture
             // Categories
             for($y = 0; $y < rand(1,4); $y++)
             {
-                $posts[$i]->addCategory($categoriesArray[rand(0,count($categoriesArray))]);
+                $posts[$i]->addCategory($categoriesArray[rand(0,count($categoriesArray) - 1)]);
             }
 
             //  Body
