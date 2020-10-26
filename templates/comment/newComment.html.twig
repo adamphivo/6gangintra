@@ -1,0 +1,63 @@
+{% block newComment %}
+<style>
+    .codeblock  textarea{
+        color: green;
+        background: black;
+        display: block;
+        padding: 1em;
+        width:80%;
+        height: 5em;
+        font-size: 1.2em;
+        border: none;
+        font-family: monospace;
+        resize: none;
+        margin-bottom: 1em;
+        border-radius: 5px;
+        margin: 0;
+    }
+
+    .text textarea{
+        color: whitesmoke;
+        background: rgb(5, 14, 34);
+        display: block;
+        padding: 1em;
+        width:80%;
+        font-size: 1.2em;
+        border: none;
+        height: 5em;
+        font-family: monospace;
+        resize: none;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px black;
+        margin-bottom: 1em;
+    }
+
+    .submit button {
+        color: white;
+        padding: 2em;
+        font: monospace;
+        background: transparent;
+        border: 1px solid white;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px black;
+        text-align: left;
+    }
+</style>
+    {{ form_start(form) }}
+        <div>
+            {{ form_errors(form) }}
+        </div>
+        <div class="text">
+            {{ form_widget(form.textContent, {'attr':{'placeholder':'Comment *'}}) }}
+        </div>
+        <div class="codeblock">
+            {{ form_widget(form.codeBlock, {'attr':{'placeholder':'Code block', 'spellcheck':'false'}}) }}
+        </div>
+        <div class="submit">
+            {{ form_widget(form.save, {'attr':{'placeholder':'send'}}) }}
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

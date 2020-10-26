@@ -23,6 +23,7 @@
         .codeBlock {
             width: 95%;
             border-radius: 5px;
+            text-align: left;
         }
 
         .title {
@@ -117,8 +118,8 @@
             color: white;
             font-size: 1.5em;
             font-family: var(--logo-font);
-            margin-top: 1em;
-            margin-bottom: 1em;
+            margin-top: 3em;
+            margin-bottom: 3em;
         }
 
         .commentDateAdded {
@@ -133,6 +134,70 @@
             padding: 0.2em;
             font-family: monospace;
             border-radius: 5px;
+        }
+
+        .codeblock  textarea{
+            color: green;
+            background: black;
+            display: block;
+            padding: 1em;
+            width:80%;
+            height: 5em;
+            font-size: 1.2em;
+            border: none;
+            font-family: monospace;
+            resize: none;
+            margin-bottom: 1em;
+            border-radius: 5px;
+            margin: 0;
+            text-align: left;
+        }
+
+        .text textarea{
+            color: whitesmoke;
+            background: rgb(5, 14, 34);
+            display: block;
+            padding: 1em;
+            width:80%;
+            font-size: 1.2em;
+            border: none;
+            height: 5em;
+            font-family: monospace;
+            resize: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 1px black;
+            margin-bottom: 1em;
+        }
+
+        .submit button {
+            color: white;
+            padding: 1em;
+            font: monospace;
+            background: transparent;
+            border: 1px solid white;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 1px 1px 1px black;
+            text-align: left;
+        }
+
+        .submit {
+            text-align: left;
+        }
+
+        .commentSectionItem {
+            border: 1px solid white;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            padding: 1em;
+        }
+
+        .noComments {
+            margin-top:1em;
+            margin-bottom: 1em;
+            padding: 2em;
         }
 
     </style>
@@ -191,15 +256,37 @@
             {# Comments #}
             <div class="commentPreview">
                 {% if comments|length == 0 %}
-                <p>There is no comment for this post yet. Be the first to evalutate this post.</p>
+                <p class="noComments">There is no comment for this post yet. Be the first to evalutate this post.</p>
                 {% endif %}
+                    {{ form_start(form) }}
+                    <div>
+                        {{ form_errors(form) }}
+                    </div>
+                    <div class="text">
+                        {{ form_widget(form.textContent, {'attr':{'placeholder':'Comment *'}}) }}
+                    </div>
+                    <div class="codeblock">
+                        {{ form_widget(form.codeBlock, {'attr':{'placeholder':'Code block', 'spellcheck':'false'}}) }}
+                    </div>
+                    <div class="submit">
+                        {{ form_widget(form.save, {'attr':{'placeholder':'send'}}) }}
+                    </div>
+                {{ form_end(form) }}
                 {% if comments %}
                     <h2 class="commentSectionTitle">commentaires</h2>
                     <div>
                         {% for comment in comments %}
-                            <p class="authorNameComments">{{ comment.user.userName}}</p>
-                            <p class="commentDateAdded">{{ comment.dateAdded|date("d M Y H:i") }}</p>
-                            <p class="commentContainer">{{ comment.textContent }}</p>
+                            <div class="commentSectionItem">
+                                <p class="authorNameComments">{{ comment.user.userName}}</p>
+                                <p class="commentDateAdded">{{ comment.dateAdded|date("d M Y H:i") }}</p>
+                                <p class="commentContainer">{{ comment.textContent }}</p>
+                                {# code block #}
+                                {% if comment.codeBlock %}
+                                    <div class="codeBlock">
+                                        <pre><code class="codeBlock">{{ comment.codeBlock }}</code></pre>
+                                    </div>
+                                {% endif %}
+                            </div>
                         {% endfor %}
                     </div>
                 {% endif %}

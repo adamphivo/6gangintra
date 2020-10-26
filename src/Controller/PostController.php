@@ -11,8 +11,10 @@ use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
 use App\Entity\Post;
+use App\Entity\Comment;
 use App\Entity\Category;
 use App\Form\PostType;
+use App\Form\CommentType;
 
 
 class PostController extends AbstractController
@@ -54,14 +56,31 @@ class PostController extends AbstractController
     /**
      * @Route("/posts/{id}", name="full_post", requirements={"id"="\d+"})
      */
-    public function displaySpecificArticle(PostRepository $postRepo, CommentRepository $commentRepo, int $id)
+    public function displaySpecificArticle(Request $request, PostRepository $postRepo, CommentRepository $commentRepo, UserRepository $userRepo, int $id)
     {
         $post = $postRepo->getById($id);
         $comments = $commentRepo->findCommentsByPostId($post->getId());
+
+        $comment = new Comment($post);
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            // a random user is chosen
+            $comment->setUser($userRepo->getOneRandomly());
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('post_display/fullPost.html.twig', [
             'comments' => $comments,
             'post' => $post,
             'categories' => $post->getCategories(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -94,11 +113,6 @@ class PostController extends AbstractController
             // a random user is chosen
             $post->setUser($userRepo->getOneRandomly());
             
-            $test = Array();
-            foreach($post->getCategories() as $category){
-                $test[] = $category->__toString();
-            }
-
             $em->persist($post);
             $em->flush();
 

@@ -44,6 +44,11 @@ class Comment
      */
     private $codeBlock;
 
+    public function __construct(Post $post) {
+        $this->dateAdded = new \DateTimeImmutable();
+        $this->post = $post;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
