@@ -45,11 +45,12 @@
         }
 
         .navStamps {
-            width: 40%;
+            width: 10em;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             margin: 2em;
+            margin-left: 2.5em;
         }
 
         .navStamp {
@@ -70,15 +71,14 @@
             <h1 class="homeLogo">6gang<span class="intra">intra</span></h1>
         </a>
         <ul class="linkContainer">
-            <li>connect</li>
+            <li><a href="/">home</a></li>
             <li><a href="/posts">posts</a></li>
-            <li>news</li>
-            <li>stats</li>
+            <li>team</li>
             <li>doc</li>
         </ul>
         <div class="navStamps">
             {% for category in categories %}
-                <a class="navStamp">{{ category.name }}</a>
+                <a class="navStamp" href='/posts/category/{{ category.name }}'>{{ category.name }}</a>
             {% endfor %}
         </div>
     </div>

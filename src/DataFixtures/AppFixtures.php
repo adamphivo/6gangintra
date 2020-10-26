@@ -35,13 +35,26 @@ class AppFixtures extends Fixture
         $indenter = new \Gajus\Dindent\Indenter();
 
         $categories = [
-            "PHP" => "anything related to PHP",
-            "JS" => "anythingre lated to JS",
-            "Symfony" => "anything related to Symfony",
-            "Drupal" => "anything related to Drupal",
-            "CSS" => "anything related to CSS",
-            "HTML" => "anything related to HTML",
-            "Git" => "anything related to Git",
+            "php" => "anything related to PHP",
+            "js" => "anythingre lated to JS",
+            "symfony" => "anything related to Symfony",
+            "drupal" => "anything related to Drupal",
+            "css" => "anything related to CSS",
+            "html" => "anything related to HTML",
+            "git" => "anything related to Git",
+            "docker" => "anything related to Docker",
+            "devOps" => "anything related to devOps",
+            "idea" => "different ideas",
+            "frontend" => "related to frontend",
+            "backend" => "related to backend",
+            "database" => "related to database",
+            "SQL" => "related to SQL",
+            "unix" => "related to Unix",
+            "windows" => "related to Windows",
+            "noSQL" => "related to noSQL",
+            "design" => "related to noDesign",
+            "architecture" => "related to architecture",
+            "testhlggesgsg" => "sdgsdgtest",
         ];
 
         $categoriesArray = Array();
@@ -73,9 +86,9 @@ class AppFixtures extends Fixture
             $posts[$i] = new Post();
 
             // Categories
-            for($y = 0; $y < 5; $y++)
+            for($y = 0; $y < rand(1,4); $y++)
             {
-                $posts[$i]->addCategory($categoriesArray[rand(1,count($categoriesArray) - 1)]);
+                $posts[$i]->addCategory($categoriesArray[rand(0,count($categoriesArray))]);
             }
 
             //  Body

@@ -26,6 +26,8 @@
 
     .postTitle {
         text-align: left;
+        width: 70%;
+        line-height: 3em;
     }
 
     .date {
@@ -60,6 +62,9 @@
 {# All latest posts #}
     <div class="latestPosts">
             <ol>
+                {% if sectionName %}
+                    <h1>{{ sectionName }}</h1>
+                {% endif %}
                 {% for post in posts %}
                     <div class="postListItem">
                         <p class="date">{{ post.dateAdded|date("d/m/Y \a\t H:i") }}</p>
@@ -68,7 +73,7 @@
 
                             <div class="stampContainer">
                                 {% for category in post.categories %}
-                                    <a class="stamp">{{ category.name }}</a>
+                                    <a class="stamp" href="/posts/category/{{ category.name }}">{{ category.name }}</a>
                                 {% endfor %}
                             </div>
 

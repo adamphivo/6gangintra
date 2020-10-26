@@ -119,7 +119,7 @@
             {# Categories #}
             <div syle="color: black; background:white;">
                 {% for category in post.categories %}
-                    <a class="stamp">{{ category.name }}</a>
+                    <a class="stamp" href="/posts/category/{{ category.name }}">{{ category.name }}</a>
                 {% endfor %}
             </div>
             {# User Info #}

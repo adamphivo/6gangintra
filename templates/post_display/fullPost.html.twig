@@ -155,7 +155,7 @@
             {# Categories #}
             <div syle="color: black; background:white;">
                 {% for category in post.categories %}
-                    <a class="stamp">{{ category.name }}</a>
+                    <a class="stamp" href="/posts/category/{{ category.name }}">{{ category.name }}</a>
                 {% endfor %}
             </div>
 
@@ -180,6 +180,12 @@
             {% if post.mainTextContent %}
                 <p class="mainTextContent">{{ post.mainTextContent }}</p>
             {% endif %} 
+            {% if post.youtubeLink %}
+            <a href="{{ post.youtubeLink }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/YouTube_dark_icon_%282017%29.svg/107px-YouTube_dark_icon_%282017%29.svg.png" style="width: 5em; margin-bottom: 1em;"/></a>
+            {% endif %}
+            {% if post.githubLink %}
+            <a href="{{ post.githubLink }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Git-icon-black.svg/173px-Git-icon-black.svg.png" style="width: 5em; display:block;"/></a>
+            {% endif %}
 
             {# Comments #}
             <div class="commentPreview">

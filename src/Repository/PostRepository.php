@@ -50,4 +50,10 @@ class PostRepository extends ServiceEntityRepository
         ;
         return $all[rand(0,count($all) - 1)];
     }
+
+    public function getByCategory($categoryName) {
+        return $this->createQueryBuilder('p')
+        ->getQuery()
+        ->getResult();
+    }
 }

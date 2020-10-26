@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PostRepository;
 use App\Repository\CommentRepository;
+use App\Repository\CategoryRepository;
 
 
 class PostDisplayController extends AbstractController
@@ -34,6 +35,7 @@ class PostDisplayController extends AbstractController
         $posts = $postRepo->getAll();
         return $this->render('post_display/list.html.twig', [
             'posts' => $posts,
+            'sectionName' => 'All posts'
         ]);
     }
 
@@ -56,6 +58,20 @@ class PostDisplayController extends AbstractController
         $posts = $postRepo->getLasts(3);
         return $this->render('post_display/listModule.html.twig', [
             'posts' => $posts,
+            'sectionName' => "Latest posts"
+        ]);
+    }
+
+    /**
+     * @Route("/posts/category/{categoryName}", name="category_post")
+    */
+    public function byCategory(PostRepository $postRepo, CategoryRepository $categoryRepo, string $categoryName)
+    {   
+        $posts = $postRepo->getByCategory($categoryName);
+        $category = $categoryRepo->findOneBy(['name' => $categoryName]);
+        return $this->render('post_display/list.html.twig', [
+            'posts' => $category->getPosts(),
+            'sectionName' => $categoryName
         ]);
     }
 }
