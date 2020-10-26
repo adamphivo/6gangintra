@@ -51,6 +51,7 @@
             flex-wrap: wrap;
             margin: 2em;
             margin-left: 2.5em;
+            align-content: end;
         }
 
         .navStamp {
@@ -60,6 +61,10 @@
             border-radius: 5px;
             padding: 0.5em;
             margin: 0.2em;
+        }
+
+        .write {
+            font-size: 1.2em;
         }
 
 
@@ -75,6 +80,7 @@
             <li><a href="/posts">posts</a></li>
             <li>team</li>
             <li>doc</li>
+            <li class="write"><a href={{ path('post_new')}}>✍️</a></li>
         </ul>
         <div class="navStamps">
             {% for category in categories %}

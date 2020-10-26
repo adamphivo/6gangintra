@@ -13,16 +13,132 @@
         border-radius: 5px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 3em;
-        text-align: center;
+        margin-top: 2em;
+        text-align: left;
+        font-family: monospace;
     }
+
+    .title input{
+        color: whitesmoke;
+        background: rgb(25, 25, 110);
+        display: block;
+        padding: 1em;
+        width: 80%;
+        font-size: 1.2em;
+        border: none;
+        font-family: monospace;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px black;
+    }
+
+    .description textarea{
+        color: whitesmoke;
+        background: rgb(25, 25, 110);
+        display: block;
+        padding: 1em;
+        width:80%;
+        font-size: 1.2em;
+        border: none;
+        height: 1em;
+        font-family: monospace;
+        resize: none;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px black;
+    }
+
+    .mainTextContent textarea{
+        color: whitesmoke;
+        background: rgb(25, 25, 110);
+        display: block;
+        padding: 1em;
+        width:80%;
+        font-size: 1.2em;
+        border: none;
+        font-family: monospace;
+        resize: none;
+        height: 10em;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px black;
+    }
+
+    .codeblock  textarea{
+        color: green;
+        background: black;
+        display: block;
+        padding: 1em;
+        width:80%;
+        height: 10em;
+        font-size: 1.2em;
+        border: none;
+        font-family: monospace;
+        resize: none;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        border-radius: 5px;
+    }
+
+    .select select {
+        color: whitesmoke;
+        width: 20em;
+        height: 10em;
+        background: rgb(25, 25, 110);
+        border-radius: 5px;
+    }
+
+    .submit button {
+        color: white;
+        padding: 2em;
+        font: monospace;
+        background: transparent;
+        border: 1px solid white;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px black;
+    }
+
+    .newPostTitle {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        font-family: monospace;
+    }
+
 </style>
 
 <div class="formContainer">
     {# Custom Template #}
+    <h1 class="newPostTitle">new post</h1>
     {{ form_start(form) }}
         <div>
             {{ form_errors(form) }}
+        </div>
+        <div class="title">
+            {{ form_widget(form.title, {'attr':{'class':'title','placeholder':'Title *'}}) }}
+        </div>
+        <div class="description">
+            {{ form_widget(form.textContent, {'attr':{'class':'description','placeholder':'Short description *'}}) }}
+        </div>
+        <div class="codeblock">
+            {{ form_widget(form.codeContent, {'attr':{'class':'codeblock','placeholder':'Code block', 'spellcheck':'false'}}) }}
+        </div>
+        <div class="mainTextContent">
+            {{ form_widget(form.mainTextContent, {'attr':{'class':'mainTextContent','placeholder':'Your post *', 'spellcheck':'false'}}) }}
+        </div>
+        <div class="title">
+            {{ form_widget(form.githubLink, {'attr':{'class':'mainTextContent','placeholder':'External Link', 'spellcheck':'false'}}) }}
+        </div>
+        <div class="title">
+            {{ form_widget(form.youtubeLink, {'attr':{'class':'mainTextContent','placeholder':'Github Link', 'spellcheck':'false'}}) }}
+        </div>
+        <p>Categories ( select multiple with ctrl + click )
+        <div class="select">
+            {{ form_widget(form.categories) }}
+        </div>
+        <div class="submit">
+            {{ form_widget(form.save, {'attr':{'placeholder':'send'}}) }}
         </div>
     {{ form_end(form) }}
 </div>

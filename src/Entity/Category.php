@@ -35,7 +35,7 @@ class Category
     private $dateAdded;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Post::class, inversedBy="categories")
+     * @ORM\ManyToMany(targetEntity=Post::class, mappedBy="categories")
      */
     private $posts;
     

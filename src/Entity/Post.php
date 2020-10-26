@@ -76,7 +76,7 @@ class Post
     private $youtubeLink;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="posts")
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="posts")
      * @Assert\NotBlank
      */
     private $categories;

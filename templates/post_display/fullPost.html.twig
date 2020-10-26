@@ -154,8 +154,7 @@
 
             {# Categories #}
             <div>
-                {{ dump(categories) }}
-                {% for category in categories %}
+                {% for category in post.categories %}
                     <a class="stamp" href="/posts/category/{{ category.name }}">{{ category.name }}</a>
                 {% endfor %}
             </div>

@@ -58,7 +58,6 @@ class PostController extends AbstractController
     {
         $post = $postRepo->getById($id);
         $comments = $commentRepo->findCommentsByPostId($post->getId());
-        dump($post);
         return $this->render('post_display/fullPost.html.twig', [
             'comments' => $comments,
             'post' => $post,
@@ -95,12 +94,15 @@ class PostController extends AbstractController
             // a random user is chosen
             $post->setUser($userRepo->getOneRandomly());
             
+            $test = Array();
+            foreach($post->getCategories() as $category){
+                $test[] = $category->__toString();
+            }
+
             $em->persist($post);
             $em->flush();
 
-            return $this->render('dumper/dump.html.twig', [
-                'data' => $post,
-            ]);
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('post_display/newPost.html.twig', [
