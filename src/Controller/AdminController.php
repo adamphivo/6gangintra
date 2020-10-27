@@ -41,4 +41,14 @@ class AdminController extends AbstractController
             'posts' => $postRepo->findAll(),
         ]);
     }
+
+    /**
+     * @Route("/admin/comments", name="admin_comments")
+     */
+    public function comments(CommentRepository $commentRepo): Response
+    {
+        return $this->render('admin/comments.html.twig',[
+            'comments' => $commentRepo->findAll(),
+        ]);
+    }
 }

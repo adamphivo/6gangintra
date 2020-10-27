@@ -1,0 +1,32 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Admin Panel - Users {% endblock %}
+
+{% block adminContent %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th> 
+            <th>author</th>
+            <th>content</th>
+            <th>codeBlock</th>
+            <th>dateAdded</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for comment in comments %}
+        <tr>
+            <td>{{ comment.id }}</td>
+            <td>{{ comment.user.userName }}</td>
+            <td style="width: 6em;">{{ comment.textContent }}</td>
+            <td style="width: 6em;">{{ comment.codeBlock }}</td>
+            <td>{{ comment.dateAdded|date("d/m/Y") }}</td>
+            <td><a>⚙️</a></td>
+            <td><a href="{{ path('comment_delete', {id:(comment.id)})}}">❌</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

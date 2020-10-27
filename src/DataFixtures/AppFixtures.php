@@ -107,12 +107,11 @@ class AppFixtures extends Fixture
         // Populate comments
         $comments = Array();
         for($i = 0; $i < 400; $i++){
-            $comments[$i] = new Comment();
+            $comments[$i] = new Comment($posts[rand(0, count($posts) - 1)]);
             $comments[$i]->setUser($users[rand(0, count($users) - 1)]);
-            $comments[$i]->setPost($posts[rand(0, count($posts) - 1)]);
             $comments[$i]->setTextContent($faker->realText);
             $comments[$i]->setDateAdded($faker->dateTimeThisYear());
-
+            $comments[$i]->setCodeBlock($indenter->indent($faker->randomHtml(2,1)));
             $manager->persist($comments[$i]);
         }
 

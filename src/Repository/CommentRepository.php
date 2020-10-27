@@ -30,4 +30,12 @@ class CommentRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findAll() 
+    {
+        return $this->createQueryBuilder('c')
+        ->orderBy('c.dateAdded', 'DESC')
+        ->getQuery()
+        ->getResult();
+    }
+
 }

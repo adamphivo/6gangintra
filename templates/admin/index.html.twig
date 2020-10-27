@@ -55,6 +55,7 @@
 
     .display td {
         padding: 1em;
+        border-top: 1px solid white;
     }
 
     .display tr {
@@ -71,9 +72,9 @@
 
     {# Admin Pannel Navigation #}
     <div class="adminNavContainer">
-        <h2 class="warning">Danger zone 😎 </h2>
         <a href="{{ path('admin_users') }}"><p>Users</p></a>
         <a href="{{ path('admin_posts') }}"><p>Posts</p></a>
+        <a href="{{ path('admin_comments') }}"><p>Comments</p></a>
     </div>
 
     {# Wich one are we going to display #}

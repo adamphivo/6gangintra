@@ -61,10 +61,16 @@ class User implements UserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $subscribedAt;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->subscribedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -238,5 +244,17 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->getUsername();
+    }
+
+    public function getSubscribedAt(): ?\DateTimeImmutable
+    {
+        return $this->subscribedAt;
+    }
+
+    public function setSubscribedAt(\DateTimeImmutable $subscribedAt): self
+    {
+        $this->subscribedAt = $subscribedAt;
+
+        return $this;
     }
 }

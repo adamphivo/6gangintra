@@ -18,7 +18,7 @@
     {% for post in posts %}
         <tr>
             <td>{{ post.id }}</td>
-            <td>{{ post.title }}</td>
+            <td style="width: 2em;">{{ post.title }}</td>
             <td>{{ post.dateAdded|date("d/m/Y") }}</td>
             <td>{{ post.user }}</td>
             <td><a>⚙️</a></td>
