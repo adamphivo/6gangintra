@@ -238,8 +238,10 @@
         {# Execution #}
     <script>hljs.initHighlightingOnLoad();</script>
 
-    {# One Article #}
+    
     {% include 'search/searchbar.html.twig' %}
+
+    {# One Article #}
     <div class="thumbnailsContainer">
         <div class="thumbnail">
             <h2 class="title"> {{ post.title }}</h2>
@@ -258,6 +260,7 @@
                     ({{ post.User.Experience }})
                 </span>
             </p> 
+            
             {# Post Body #}
             <p class="date">{{ post.dateAdded|date("d M Y H:i")}}</p>
             {% if post.textContent %}
