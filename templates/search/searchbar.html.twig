@@ -9,39 +9,40 @@
         color: white;
         font-size: 1em;
         background: transparent;
-        margin-top: 1em;
-        margin-bottom: 1em;
         padding: 1em;
         border:none;
         padding: 10px;
-        border-bottom: 1px solid white;
+        margin-top: 1em;
     }
 
     .search button {
         color: white;
         font-size: 1em;
         background: transparent;
-        margin-top: 1em;
-        margin-bottom: 1em;
         padding: 0.5em;
         border:none;
         cursor: pointer;
         margin-left: 2em;
         font-family:monospace;
-        border: 1px dotted white;
         transition: 0.2s;
     }
 
     .search button:hover {
       background: white;
-      box-shadow: 1px 1px 100px white;
       color: darkblue;
+    }
+    
+    .searchZone {
+      border-bottom: 1px solid white;
+      width:18em;
+      margin-right: auto;
+      margin-left: auto;
     }
 </style>
 <form class="search" action={{ path('post_search') }} method="get">
-  <div>
-    <input placeholder="🔍" name="say" id="say">
-    <button>🔍</button>
-  </div>
+    <div class="searchZone">
+      <input placeholder="" name="say" id="say">
+      <button>🔍</button>
+    </div>
 </form>
 {% endblock %}
