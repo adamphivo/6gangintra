@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<style>
+    .loginContainer {
+        text-align: center;
+        font-family: var(--logo-font);
+        margin-top: 2em;
+    }
+
+    .loginContainer input {
+        background: black;
+        color: green;
+        padding: 1em;
+        margin: 1em;
+        border: none;
+        font-family: monospace;
+        font-size: 1.3em;
+        width: 50%;
+        transition: 0.2s;
+    }
+
+    .loginContainer button {
+        background: black;
+        color: green;
+        padding: 1em;
+        font-size: 1.5em;
+        border: none;
+        font-family: monospace;
+        cursor: pointer;
+    }
+
+    .loginContainer button:hover {
+        text-shadow: 1px 10px 10px green;
+    }
+
+    .createAccount {
+        margin-top: 3em;
+    }
+</style>
+
+<div class="loginContainer">
+    <form action="{{ path('security_login') }}" method="post">
+        <div>
+            <input placeholder="Email" type="text" required name="_username">
+        </div>
+        <div>
+            <input placeholder="Password" type="password" required name="_password">
+        </div>
+        <div>
+            <button type="submit">Connect</button>
+        </div>
+    </form>
+
+    <div class="createAccount">
+        <p>or</p>
+        <a href="{{ path('security_registration')}}">Create an account</a>
+    <div>
+</div>
+
+{% endblock %}

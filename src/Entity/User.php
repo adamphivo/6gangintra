@@ -2,14 +2,24 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ *  fields = {"email"},
+ *  message = "Email already in use."
+ * )
+ * @UniqueEntity(
+ *  fields = {"userName"},
+ * message = "Username already in use."
+ * )
  */
 class User implements UserInterface
 {
@@ -21,6 +31,7 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Assert\Email()
      * @ORM\Column(type="string", length=50, unique=true)
      */
     private $email;
@@ -38,8 +49,15 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(min="6", minMessage="Password must be at leat 6 characters long")
      */
     private $password;
+
+    // Un champ de l'entite mais pas de la DB
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Password and confirmed password are different")
+     */
+    public $confirm_password;
 
     /**
      * @ORM\OneToMany(targetEntity=Post::class, mappedBy="user")
@@ -47,7 +65,7 @@ class User implements UserInterface
     private $posts;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $portraitUrl;
 
@@ -71,6 +89,7 @@ class User implements UserInterface
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->subscribedAt = new \DateTimeImmutable();
+        $this->experience = 0;
     }
 
     public function getId(): ?int

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    .registration {
+        text-align:center;
+        font-family: var(--logo-font);
+    }
+
+    .registration input {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+        .loginContainer {
+        text-align: center;
+        font-family: var(--logo-font);
+        margin-top: 2em;
+    }
+
+    .loginContainer input {
+        background: black;
+        color: green;
+        padding: 1em;
+        margin: 1em;
+        border: none;
+        font-family: monospace;
+        font-size: 1.3em;
+        width: 50%;
+    }
+
+    .loginContainer button {
+        background: black;
+        color: green;
+        padding: 1em;
+        font-size: 2em;
+        border: none;
+        font-family: monospace;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .loginContainer button:hover {
+        text-shadow: 1px 10px 10px green;
+    }
+
+</style>
+<div class="registration">
+    <div class="loginContainer">
+        {{ form_start(form) }}
+        {{ form_row(form.userName, {'label':' ', 'attr':{ 'placeholder': 'username'}} ) }}
+        {{ form_row(form.email, {'label':' ', 'attr':{'placeholder': 'email' }} ) }}
+        {{ form_row(form.password, {'label':' ', 'attr':{'placeholder': 'password' }} ) }}
+        {{ form_row(form.confirm_password, {'label':' ', 'attr':{'placeholder': 'confirm password' }}) }}
+        {{ form_row(form.save)}}
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

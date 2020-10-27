@@ -102,6 +102,13 @@
             cursor: pointer;
         }
 
+        .securityState {
+            position: fixed;
+            top: 1em;
+            right: 1em;
+            font-family: var(--logo-font);
+            padding: 1em;
+        }
 
     </style>
 
@@ -115,11 +122,26 @@
 
         {# Links #}
         <ul class="linkContainer">
-            <li><a href="/">home</a></li>
-            <li><a href="/posts">discover</a></li>
-            <li><a href="/posts">connect</a></li>
-            <li><a href="/admin">admin panel</a></li>
-            <li class="write"><a href={{ path('post_new')}}>✍️</a></li>
+            <li><a href="{{ path('home')}}">home</a></li>
+
+            {# Connection Bouton #}
+            {% if not app.user %}
+                <li><a href="{{ path('security_login') }}">connect</a>
+            {% endif %}
+
+            {% if app.user %}
+            <li><a href="{{ path('security_logout') }}">disconnect</a>
+            {% endif %}
+
+            <li><a href="{{ path('all_posts') }}">discover</a></li>
+            <li><a href="{{ path('admin')}}">admin</a></li>
+
+            {% if not app.user %}
+                <li class="write"><a href={{ path('security_login')}}>✍️</a></li>
+            {% endif %}
+            {% if app.user %}
+                <li class="write"><a href={{ path('post_new')}}>✍️</a></li>
+            {% endif %}
         </ul>
 
         {#  Categories Stamps #}

@@ -57,7 +57,7 @@ class PostController extends AbstractController
     }
     
     /**
-     * @Route("/posts", name="latest_spots")
+     * @Route("/posts", name="all_posts")
      */
     public function displayAsList(PostRepository $postRepo, CommentRepository $commentRepo)
     {
@@ -83,8 +83,7 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            // a random user is chosen
-            $comment->setUser($userRepo->getOneRandomly());
+            $comment->setUser($this->getUser());
             $em->persist($comment);
             $em->flush();
             return $this->redirectToRoute('full_post', array('id' => $id));
@@ -125,10 +124,7 @@ class PostController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $post = $form->getData();
             $em = $this->getDoctrine()->getManager();
-
-            // a random user is chosen
-            $post->setUser($userRepo->getOneRandomly());
-            
+            $post->setUser($this->getUser());
             $em->persist($post);
             $em->flush();
 
