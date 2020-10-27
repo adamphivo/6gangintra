@@ -4,6 +4,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            font-family: var(--logo-font);
         }
 
         .wikiLinks li:hover {
@@ -16,7 +17,7 @@
     </style>
     
     {# Render list of link #}
-    <h3 class="wikiTitle">maybe wikipedia could help you ?</h3>
+    <h3 class="wikiTitle">{{ title }}</h3>
     <ul class="wikiLinks">
         {% for result in results %}
             {% for pageName, link in result %}

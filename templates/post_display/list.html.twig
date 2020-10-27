@@ -113,7 +113,13 @@
                         {% endif %}
                     </div>
                 {% endfor %}
-                {{ render(controller('App\\Controller\\WikipediaSearchController::index', {searchString: (sectionName) } )) }}
+
+                {# Wikipedia Search #}
+                {{ render(controller('App\\Controller\\SearchController::searchWiki', {searchString: (sectionName) } )) }}
+
+                {# Stackoverflow Search #}
+                {{ render(controller('App\\Controller\\SearchController::searchStack', {searchString: (sectionName) } )) }}
+                
             </ol>
     </div>
 {% endblock %}

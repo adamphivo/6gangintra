@@ -164,6 +164,7 @@ class PostController extends AbstractController
             }
         }
 
+        
         return $this->render('post_display/list.html.twig', [
             'query' => $request->query->get('say'),
             'posts' => $postRepo->findByString($request->query->get('say')),
