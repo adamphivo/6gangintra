@@ -10,9 +10,9 @@ use App\Entity\User;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user/{id}", name="user", requirements={"id"="\d+"})
+     * @Route("/users/{id}", name="user_profile", requirements={"id"="\d+"})
      */
-    public function getUserById(): Response
+    public function displayUserProfile(): Response
     {
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController',
