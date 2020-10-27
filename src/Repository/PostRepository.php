@@ -64,6 +64,7 @@ class PostRepository extends ServiceEntityRepository
         ->orWhere('p.textContent LIKE :word')
         ->orWhere('p.mainTextContent LIKE :word')
         ->orWhere('p.codeContent LIKE :word')
+        ->orderBy('p.dateAdded', 'DESC')
         ->setParameter('word', '%'.$searchString.'%')
         ->getQuery()
         ->getResult()

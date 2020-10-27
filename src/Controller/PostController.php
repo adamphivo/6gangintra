@@ -88,7 +88,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/posts/category/{categoryName}", name="category_post")
+     * @Route("/posts/category/{categoryName}", name="category_post", requirements={"categoryName"="\w+"})
     */
     public function byCategory(PostRepository $postRepo, CategoryRepository $categoryRepo, string $categoryName)
     {   

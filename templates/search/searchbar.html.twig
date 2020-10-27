@@ -3,7 +3,6 @@
     .search {
         text-align: center;
         margin-right: 1em;
-        margin-top: 1em;
     }
 
     .search input {
@@ -41,7 +40,8 @@
 </style>
 <form class="search" action={{ path('post_search') }} method="get">
   <div>
-    <input placeholder="🔍" name="say" id="say"><button>search</button>
+    <input placeholder="🔍" name="say" id="say">
+    <button>🔍</button>
   </div>
 </form>
 {% endblock %}
