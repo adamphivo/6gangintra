@@ -43,8 +43,7 @@ class PostController extends AbstractController
             'sectionName' => "Recent"
         ]);
     }
-
-    // Render all posts sorted by newest first
+    
     /**
      * @Route("/posts", name="latest_spots")
      */
@@ -65,11 +64,10 @@ class PostController extends AbstractController
         $post = $postRepo->getById($id);
         $comments = $commentRepo->findCommentsByPostId($post->getId());
 
+        // Add a new comment Form
         $comment = new Comment($post);
-
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
             $em = $this->getDoctrine()->getManager();
@@ -80,6 +78,7 @@ class PostController extends AbstractController
             return $this->redirectToRoute('full_post', array('id' => $id));
         }
 
+        // Render
         return $this->render('post_display/fullPost.html.twig', [
             'comments' => $comments,
             'post' => $post,
@@ -105,6 +104,7 @@ class PostController extends AbstractController
      */
     public function newPost(Request $request, UserRepository $userRepo)
     {
+        // Add a new article form
         $post = new Post();
 
         $form = $this->createForm(PostType::class, $post);
