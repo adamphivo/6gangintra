@@ -23,6 +23,18 @@ use App\Form\CommentType;
 
 class PostController extends AbstractController
 {
+
+    /**
+     * @Route("/posts/delete/{id}", name="post_delete")
+     */
+    public function deletePost(PostRepository $postRepo ,int $id) : Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($postRepo->find($id));
+        $em->flush();
+        return $this->redirectToRoute('admin_posts');
+    }
+
     // Render a single post, semi-extensive
     public function displayRandomPost(PostRepository $postRepo, CommentRepository $commentRepo): Response
     {
@@ -49,7 +61,7 @@ class PostController extends AbstractController
      */
     public function displayAsList(PostRepository $postRepo, CommentRepository $commentRepo)
     {
-        $posts = $postRepo->getAll();
+        $posts = $postRepo->findAll();
         return $this->render('post_display/list.html.twig', [
             'posts' => $posts,
             'sectionName' => 'All posts'
@@ -126,7 +138,6 @@ class PostController extends AbstractController
         return $this->render('post_display/newPost.html.twig', [
             'form' => $form->createView(),
         ]);
-
     }
 
     /**

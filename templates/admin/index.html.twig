@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block body %}
+<style>
+
+    .panelContainer{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .title {
+        text-align: center;
+        font-family: var(--logo-font);
+        text-decoration: underline;
+    }
+
+    .warning {
+        font-size: 1em;
+    }
+
+    .adminNavContainer {
+        text-align: center;
+        font-size: 2em;
+        font-family: monospace;
+    }
+
+    .adminNavContainer p {
+        border: 1px solid white;
+        width: 5em;
+        margin-left: auto;
+        margin-right: auto;
+        transition: 0.2s;
+    }
+
+    .adminNavContainer p:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .display {
+        width: 80%;
+        margin-left: auto;
+        nargin-right: auto;
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
+
+    .display table {
+        border: 1px solid white;
+        padding: 3em;
+    }
+
+    .display td {
+        padding: 1em;
+    }
+
+    .display tr {
+        border: 1px dotted white;
+    }
+
+</style>
+
+{# Title #}
+<div class="panelContainer">
+    <div>
+        <h1 class="title">Admin Panel</h1>
+    </div>
+
+    {# Admin Pannel Navigation #}
+    <div class="adminNavContainer">
+        <h2 class="warning">Danger zone 😎 </h2>
+        <a href="{{ path('admin_users') }}"><p>Users</p></a>
+        <a href="{{ path('admin_posts') }}"><p>Posts</p></a>
+    </div>
+
+    {# Wich one are we going to display #}
+    <div class="display">
+        {% block adminContent %}
+        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}

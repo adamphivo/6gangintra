@@ -254,13 +254,19 @@
             </div>
 
             {# User Info #}
-            <p class="authorName">
-                {{ post.User.userName }}
-                <span class="authorExperience">
-                    ({{ post.User.Experience }})
-                </span>
-            </p> 
+            {% if post.User %}
+                <p class="authorName">
+                    {{ post.User.userName }}
+                    <span class="authorExperience">
+                        ({{ post.User.Experience }})
+                    </span>
+                </p> 
+            {% endif %}
+            {% if not post.User %}
+                <p class="authorName">John Doe</p>
+            {% endif %}
             
+
             {# Post Body #}
             <p class="date">{{ post.dateAdded|date("d M Y H:i")}}</p>
             {% if post.textContent %}
@@ -312,9 +318,16 @@
                     <div>
                         {% for comment in comments %}
                             <div class="commentSectionItem">
-                                <p class="authorNameComments">{{ comment.user.userName}}</p>
+                                {# Author #}
+                                {% if comment.user %}
+                                    <p class="authorNameComments">{{ comment.user.userName}}</p>
+                                {% endif %}
+                                {% if not comment.user %}
+                                    <p class="authorNameComments">John Doe</p>
+                                {% endif %}
                                 <p class="commentDateAdded">{{ comment.dateAdded|date("d M Y H:i") }}</p>
                                 <p class="commentContainer">{{ comment.textContent }}</p>
+
                                 {# code block #}
                                 {% if comment.codeBlock %}
                                     <div class="codeBlock">

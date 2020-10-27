@@ -1,0 +1,30 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Admin Panel - Users {% endblock %}
+
+{% block adminContent %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th> 
+            <th>userName</th>
+            <th>email</th>
+            <th>🎉</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.userName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.experience }}</td>
+            <td><a>⚙️</a></td>
+            <td><a href="{{ path('user_delete', {id:(user.id)})}}">❌</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

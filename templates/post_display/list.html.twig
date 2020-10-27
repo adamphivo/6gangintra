@@ -103,8 +103,12 @@
                                     <a class="stamp" href="/posts/category/{{ category.name }}">{{ category.name }}</a>
                                 {% endfor %}
                             </div>
-
-                        <a class="lPuserName" href="{{ post.user.id }}">✍️ {{ post.user.userName }}</a>
+                        {% if post.user %}
+                            <a class="lPuserName" href="{{ post.user.id }}">✍️ {{ post.user.userName }}</a>
+                        {% endif %}
+                        {% if not post.user %}
+                            <p class="lPuserName">John Doe</p>
+                        {% endif %}
                     </div>
                 {% endfor %}
                 {{ render(controller('App\\Controller\\WikipediaSearchController::index', {searchString: (sectionName) } )) }}

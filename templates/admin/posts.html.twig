@@ -1,0 +1,30 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Admin Panel - Posts {% endblock %}
+
+{% block adminContent %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th> 
+            <th>title</th>
+            <th>dateAdded</th>
+            <th>User</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+        <tr>
+            <td>{{ post.id }}</td>
+            <td>{{ post.title }}</td>
+            <td>{{ post.dateAdded|date("d/m/Y") }}</td>
+            <td>{{ post.user }}</td>
+            <td><a>⚙️</a></td>
+            <td><a href="{{ path('post_delete', {id:(post.id)})}}">❌</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
