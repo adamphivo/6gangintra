@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
 {# Style #}
 <style>
     .homeStatsContainer {
@@ -24,13 +25,20 @@
 {# Home page #}
 {% include 'search/searchbar.html.twig' %}
 
+{# Slogan #}
 <div class="welcomeSlogan">
     <p>share code 🎉</p>
 </div>
 
+{# Latests posts #}
 {{ render(controller('App\\Controller\\PostController::lastFive')) }}
+
+{# Leader Board #}
 <div class="homeStatsContainer">
     {{ render(controller('App\\Controller\\StatsController::displayLeaderBoard')) }}
 </div>
+
+{# A random post #}
 {{ render(controller('App\\Controller\\PostController::displayRandomPost')) }}
+
 {% endblock %}

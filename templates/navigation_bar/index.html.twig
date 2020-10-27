@@ -106,23 +106,30 @@
 
     </style>
 
-    {# Logo #}
+    
     <div class="logoContainer">
+
+        {# Logo #}
         <a class="logo" href={{ path('home')}}>
             <h1 class="homeLogo">6gang<span class="intra">intra</span></h1>
         </a>
+
+        {# Links #}
         <ul class="linkContainer">
             <li><a href="/">home</a></li>
             <li><a href="/posts">discover</a></li>
             <li><a href="/posts">connect</a></li>
             <li class="write"><a href={{ path('post_new')}}>✍️</a></li>
         </ul>
+
+        {#  Categories Stamps #}
         <div class="navStamps">
             {% for category in categories %}
                 <a class="navStamp" href='/posts/category/{{ category.name }}'>{{ category.name }}</a>
             {% endfor %}
         </div>
 
+        {# Help widget #}
         <div class="questionHelp">
             <p>❓</p>
         </div>
