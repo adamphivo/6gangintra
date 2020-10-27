@@ -1,0 +1,27 @@
+{% block search %}
+    <style>
+        .wikiLinks {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wikiLinks li:hover {
+            text-decoration: underline;
+        }
+
+        .wikiTitle {
+            font-family: var(--logo-font);
+        }
+    </style>
+    
+    {# Render list of link #}
+    <h3 class="wikiTitle">Maybe WikiPedia could help you ?</h3>
+    <ul class="wikiLinks">
+        {% for result in results %}
+            {% for pageName, link in result %}
+                <li><a href="{{ link }}" target="_blank">{{ pageName }}</a></li>
+            {% endfor %}
+        {% endfor %}
+    </ul>    
+{% endblock %}

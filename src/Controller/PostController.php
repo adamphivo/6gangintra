@@ -132,7 +132,10 @@ class PostController extends AbstractController
     /**
      * @Route("/posts/search/", name="post_search")
      */
-    public function search(Request $request, PostRepository $postRepo, SearchRepository $searchRepo)
+    public function search(Request $request, 
+                           PostRepository $postRepo, 
+                           SearchRepository $searchRepo)
+
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -155,6 +158,7 @@ class PostController extends AbstractController
         }
 
         return $this->render('post_display/list.html.twig', [
+            'query' => $request->query->get('say'),
             'posts' => $postRepo->findByString($request->query->get('say')),
             'sectionName' => $request->query->get('say')
         ]);

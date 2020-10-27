@@ -107,6 +107,7 @@
                         <a class="lPuserName" href="{{ post.user.id }}">✍️ {{ post.user.userName }}</a>
                     </div>
                 {% endfor %}
+                {{ render(controller('App\\Controller\\WikipediaSearchController::index', {searchString: (sectionName) } )) }}
             </ol>
     </div>
 {% endblock %}
