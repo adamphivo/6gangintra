@@ -10,11 +10,15 @@ use App\Repository\PostRepository;
 use App\Repository\CommentRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
+use App\Repository\SearchRepository;
 use App\Entity\Post;
+use App\Entity\Search;
 use App\Entity\Comment;
 use App\Entity\Category;
 use App\Form\PostType;
+
 use App\Form\CommentType;
+
 
 
 class PostController extends AbstractController
@@ -36,7 +40,7 @@ class PostController extends AbstractController
         $posts = $postRepo->getLasts(3);
         return $this->render('post_display/listModule.html.twig', [
             'posts' => $posts,
-            'sectionName' => "Latest posts"
+            'sectionName' => "Recent"
         ]);
     }
 
@@ -128,8 +132,28 @@ class PostController extends AbstractController
     /**
      * @Route("/posts/search/", name="post_search")
      */
-    public function search(Request $request, PostRepository $postRepo)
+    public function search(Request $request, PostRepository $postRepo, SearchRepository $searchRepo)
     {
+
+        $em = $this->getDoctrine()->getManager();
+
+        // treat the search as words
+        foreach(explode(' ', $request->query->get('say')) as $word) {
+            // filtering the input for database
+            $existingSearch = $searchRepo->findOneBy(['searchContent' => $word]);
+            if($existingSearch) {
+                $currentCount = $existingSearch->getCount();
+                $existingSearch->setCount($currentCount + 1);
+                $em->persist($existingSearch);
+                $em->flush();
+            } else {
+                $search = new Search();
+                $search->setSearchContent($word);
+                $em->persist($search);
+                $em->flush();
+            }
+        }
+
         return $this->render('post_display/list.html.twig', [
             'posts' => $postRepo->findByString($request->query->get('say')),
             'sectionName' => $request->query->get('say')

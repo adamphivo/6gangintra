@@ -115,12 +115,14 @@
 
         .commentSectionTitle {
             text-align: left;
+            font-family: var(--section-font);
+            opacity: 70%;
         }
 
         .mainTextContent {
             color: white;
             font-size: 1.2em;
-            font-family: var(--section-font);
+            font-family: var(--logo-font);
             margin-top: 2em;
             margin-bottom: 2em;
         }
@@ -173,17 +175,26 @@
         }
 
         .submit button {
-            color: white;
+            color: green;
             padding: 1em;
             font: monospace;
             background: transparent;
-            border: 1px solid white;
+            border: none;
             margin-top: 1em;
+            border: 0px solid white;
             margin-bottom: 1em;
             cursor: pointer;
             border-radius: 5px;
-            box-shadow: 1px 1px 1px black;
-            text-align: left;
+            text-align: center;
+            box-shadow: 0px 0px 0px white;
+            transition: 0.2s;
+            font-family: var(--logo-font);
+        }
+
+        .submit button:hover {
+            color: whitesmoke;
+            background: rgb(0,225,4);
+            box-shadow: 1px 1px 20px white;
         }
 
         .submit {
@@ -191,7 +202,7 @@
         }
 
         .commentSectionItem {
-            border: 1px solid white;
+            border: 1px solid black;
             margin-top: 1em;
             margin-bottom: 1em;
             padding: 1em;
@@ -203,6 +214,13 @@
             padding: 2em;
         }
 
+        .externalLinkSection {
+            color: white;
+        }
+
+        .externalLinkSection a {
+            font-size: 1em;
+        }
     </style>
 
     {# Code highlighter - highlightJS#}
@@ -249,12 +267,14 @@
             {% if post.mainTextContent %}
                 <p class="mainTextContent">{{ post.mainTextContent }}</p>
             {% endif %} 
-            {% if post.youtubeLink %}
-                <a href="{{ post.youtubeLink }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/OOjs_UI_icon_external-link-ltr.svg/1024px-OOjs_UI_icon_external-link-ltr.svg.png" style="width: 5em; margin-bottom: 1em;"/></a>
-            {% endif %}
-            {% if post.githubLink %}
-                <a href="{{ post.githubLink }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Git-icon-black.svg/173px-Git-icon-black.svg.png" style="width: 5em; display:block;"/></a>
-            {% endif %}
+            <div class="externalLinkSection">
+                {% if post.youtubeLink %}
+                    <a href="{{ post.youtubeLink }}">🔗</a>
+                {% endif %}
+                {% if post.githubLink %}
+                    <a href="{{ post.githubLink }}">🔗</a>
+                {% endif %}
+            </div>
 
             {# Comments #}
             <div class="commentPreview">
@@ -280,7 +300,7 @@
 
                 {# Display post comments #}
                 {% if comments %}
-                    <h2 class="commentSectionTitle">commentaires</h2>
+                    <h2 class="commentSectionTitle">reactions</h2>
                     <div>
                         {% for comment in comments %}
                             <div class="commentSectionItem">

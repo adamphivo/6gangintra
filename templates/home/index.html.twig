@@ -10,16 +10,13 @@
     }
 
     .welcomeSlogan {
-        text-align:left;
-        width: 20%;
+        text-align:center;
+        width: 8em;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 1em;
-        border: 1px solid white;
+        margin-top: 2em;
         font-family: var(--logo-font);
-        font-size: 1.5em;
-        padding: 1em;
-        border-radius: 10px;
+        font-size: 1em;
     }
 
 </style>
@@ -28,9 +25,7 @@
 {% include 'search/searchbar.html.twig' %}
 
 <div class="welcomeSlogan">
-    <p style="text-align: left;">share</p>
-    <p style="text-align: center;">code</p>
-    <p style="text-align: right;">🎉</p>
+    <p>share code 🎉</p>
 </div>
 
 {{ render(controller('App\\Controller\\PostController::lastFive')) }}

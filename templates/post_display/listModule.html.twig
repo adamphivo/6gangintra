@@ -19,7 +19,7 @@
         box-shadow: 1px 1px 8px black;
         border-radius: 5px;
         font-family: monospace;
-        margin-top: 8em;
+        margin-top: 4em;
         padding-top: 2em;
         padding-bottom: 2em;
     }
@@ -59,12 +59,17 @@
         margin-top: 2em;
         margin-bottom: 2em;
     }
+
+    .sectionName {
+        font-family: var(--logo-font);
+        text-decoration: underline;
+    }
 </style>
 {# All latest posts #}
     <div class="latestPosts">
             <ol>
                 {% if sectionName %}
-                    <h1>{{ sectionName }}</h1>
+                    <h1 class="sectionName">{{ sectionName }}</h1>
                 {% endif %}
                 {% for post in posts %}
                     <div class="postListItem">
