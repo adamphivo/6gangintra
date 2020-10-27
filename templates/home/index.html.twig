@@ -16,8 +16,19 @@
         margin-left: auto;
         margin-right: auto;
         margin-top: 2em;
+        margin-bottom: 2em;
         font-family: var(--logo-font);
         font-size: 2em;
+    }
+
+    .randomQuote {
+        text-align: center;
+        font-family: var(--logo-font);
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2em;
+        margin-bottom: 2em;
     }
 
 </style>
@@ -28,6 +39,11 @@
 {# Slogan #}
 <div class="welcomeSlogan">
     <pre></code>{ share code 🎉 }</code></pre>
+</div>
+
+{# Random Quote #}
+<div class="randomQuote">
+    {{ render(controller('App\\Controller\\RandomQuoteController::randomQuote'))}}
 </div>
 
 {# Latests posts #}
