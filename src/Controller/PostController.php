@@ -38,12 +38,18 @@ class PostController extends AbstractController
     // Render a single post, semi-extensive
     public function displayRandomPost(PostRepository $postRepo, CommentRepository $commentRepo): Response
     {
-        $post = $postRepo->getOneRandomly();
-        $comments = $commentRepo->findCommentsByPostId($post->getId());
-        return $this->render('post_display/randomPost.html.twig', [
-            'post' => $post,
-            'comments' => $comments,
-        ]);
+        if(count($postRepo->findAll())){
+            $post = $postRepo->getOneRandomly();
+            $comments = $commentRepo->findCommentsByPostId($post->getId());
+            return $this->render('post_display/randomPost.html.twig', [
+                'post' => $post,
+                'comments' => $comments,
+            ]);
+        } else {
+            return new Response(
+                '<h2></h2>'
+            );
+        }
     }
 
     // Render X lasts post as a list module
@@ -75,19 +81,26 @@ class PostController extends AbstractController
     {
         $post = $postRepo->getById($id);
         $comments = $commentRepo->findCommentsByPostId($post->getId());
+        $em = $this->getDoctrine()->getManager();
+        $post->setConsultationCount($post->getConsultationCount() + 1 );
+        $em->persist($post);
 
         // Add a new comment Form
         $comment = new Comment($post);
         $form = $this->createForm(CommentType::class, $comment);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
-            $em = $this->getDoctrine()->getManager();
             $comment->setUser($this->getUser());
             $em->persist($comment);
             $em->flush();
             return $this->redirectToRoute('full_post', array('id' => $id));
         }
+
+        $em->flush();
+
+
 
         // Render
         return $this->render('post_display/fullPost.html.twig', [
@@ -128,7 +141,7 @@ class PostController extends AbstractController
             $em->persist($post);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('full_post', array('id' => $post->getId()));
         }
 
         return $this->render('post_display/newPost.html.twig', [
@@ -146,6 +159,11 @@ class PostController extends AbstractController
     {
 
         $em = $this->getDoctrine()->getManager();
+
+        if($request->query->get('say') == "")
+        {
+            return $this->redirectToRoute('all_posts');
+        }
 
         // treat the search as words
         foreach(explode(' ', $request->query->get('say')) as $word) {

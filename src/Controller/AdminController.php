@@ -17,6 +17,7 @@ class AdminController extends AbstractController
      */
     public function index() : Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/index.html.twig', [
             'data' => 'data',
         ]);
@@ -27,6 +28,7 @@ class AdminController extends AbstractController
      */
     public function users(UserRepository $userRepo): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/users.html.twig', [
             'users' => $userRepo->findAll(),
         ]);
@@ -37,6 +39,7 @@ class AdminController extends AbstractController
      */
     public function posts(PostRepository $postRepo): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/posts.html.twig',[
             'posts' => $postRepo->findAll(),
         ]);
@@ -47,6 +50,7 @@ class AdminController extends AbstractController
      */
     public function comments(CommentRepository $commentRepo): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/comments.html.twig',[
             'comments' => $commentRepo->findAll(),
         ]);

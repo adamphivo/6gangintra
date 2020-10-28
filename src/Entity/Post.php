@@ -47,7 +47,7 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $user;
 
@@ -81,11 +81,17 @@ class Post
      */
     private $categories;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $consultationCount;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->dateAdded = new \DateTimeImmutable();
+        $this->consultationCount = 0;
     }
 
     // public function __construct()
@@ -245,6 +251,18 @@ class Post
         if ($this->categories->removeElement($category)) {
             $category->removePost($this);
         }
+
+        return $this;
+    }
+
+    public function getConsultationCount(): ?int
+    {
+        return $this->consultationCount;
+    }
+
+    public function setConsultationCount(int $consultationCount): self
+    {
+        $this->consultationCount = $consultationCount;
 
         return $this;
     }

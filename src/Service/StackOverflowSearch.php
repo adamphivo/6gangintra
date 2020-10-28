@@ -16,7 +16,7 @@ class StackOverflowSearch
     public function search(string $searchString)
     {
         $requestString = <<<URL
-        https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=$searchString&site=stackoverflow
+        https://api.stackexchange.com/2.2/search?pagesize=10&order=desc&sort=activity&intitle=$searchString&site=stackoverflow
         URL;
 
         $reponse = $this->client->request(

@@ -66,56 +66,56 @@ class AppFixtures extends Fixture
             $manager->persist($category);
         }
 
-        // Populate users
-        $users = Array();
-        for($i = 0; $i < 50; $i++){
-            $users[$i] = new User();
-            $users[$i]->setExperience($faker->biasedNumberBetween($min = 1000, $max = 0, $function = 'sqrt'));
-            $users[$i]->setEmail($faker->email);
-            $users[$i]->setPortraitUrl("https://picsum.photos/60/60/");
-            $users[$i]->setUserName($faker->userName);
-            $users[$i]->setPassword($this->encoder->encodePassword($users[$i],$faker->password));
+        // // Populate users
+        // $users = Array();
+        // for($i = 0; $i < 50; $i++){
+        //     $users[$i] = new User();
+        //     $users[$i]->setExperience($faker->biasedNumberBetween($min = 1000, $max = 0, $function = 'sqrt'));
+        //     $users[$i]->setEmail($faker->email);
+        //     $users[$i]->setPortraitUrl("https://picsum.photos/60/60/");
+        //     $users[$i]->setUserName($faker->userName);
+        //     $users[$i]->setPassword($this->encoder->encodePassword($users[$i],$faker->password));
 
-            $manager->persist($users[$i]);
-        }
+        //     $manager->persist($users[$i]);
+        // }
 
-        // Populate posts
-        $posts = Array();
-        for($i = 0; $i < 200; $i++){
-            $posts[$i] = new Post();
+        // // Populate posts
+        // $posts = Array();
+        // for($i = 0; $i < 200; $i++){
+        //     $posts[$i] = new Post();
 
-            // Categories
-            for($y = 0; $y < rand(1,4); $y++)
-            {
-                $posts[$i]->addCategory($categoriesArray[rand(0,count($categoriesArray) - 1)]);
-            }
+        //     // Categories
+        //     for($y = 0; $y < rand(1,4); $y++)
+        //     {
+        //         $posts[$i]->addCategory($categoriesArray[rand(0,count($categoriesArray) - 1)]);
+        //     }
 
-            //  Body
-            $posts[$i]->setTitle($faker->catchPhrase);
-            $posts[$i]->setCodeContent($indenter->indent($faker->randomHtml(2,3)));
-            $posts[$i]->setDateAdded($faker->dateTimeThisYear());
-            $posts[$i]->setTextContent($faker->realText);
-            $posts[$i]->setGithubLink($faker->url);
-            $posts[$i]->setYoutubeLink($faker->url);
-            $posts[$i]->setMainTextContent($faker->realText);
-            $posts[$i]->setUser($users[rand(0, count($users) - 1)]);
-            $posts[$i]->getUser()->addPost($posts[$i]);
+        //     //  Body
+        //     $posts[$i]->setTitle($faker->catchPhrase);
+        //     $posts[$i]->setCodeContent($indenter->indent($faker->randomHtml(2,3)));
+        //     $posts[$i]->setDateAdded($faker->dateTimeThisYear());
+        //     $posts[$i]->setTextContent($faker->realText);
+        //     $posts[$i]->setGithubLink($faker->url);
+        //     $posts[$i]->setYoutubeLink($faker->url);
+        //     $posts[$i]->setMainTextContent($faker->realText);
+        //     $posts[$i]->setUser($users[rand(0, count($users) - 1)]);
+        //     $posts[$i]->getUser()->addPost($posts[$i]);
 
-            $manager->persist($posts[$i]);
-        }
+        //     $manager->persist($posts[$i]);
+        // }
 
-        // Populate comments
-        $comments = Array();
-        for($i = 0; $i < 400; $i++){
-            $comments[$i] = new Comment($posts[rand(0, count($posts) - 1)]);
-            $comments[$i]->setUser($users[rand(0, count($users) - 1)]);
-            $comments[$i]->setTextContent($faker->realText);
-            $comments[$i]->setDateAdded($faker->dateTimeThisYear());
-            $comments[$i]->setCodeBlock($indenter->indent($faker->randomHtml(2,1)));
-            $manager->persist($comments[$i]);
-        }
+        // // Populate comments
+        // $comments = Array();
+        // for($i = 0; $i < 400; $i++){
+        //     $comments[$i] = new Comment($posts[rand(0, count($posts) - 1)]);
+        //     $comments[$i]->setUser($users[rand(0, count($users) - 1)]);
+        //     $comments[$i]->setTextContent($faker->realText);
+        //     $comments[$i]->setDateAdded($faker->dateTimeThisYear());
+        //     $comments[$i]->setCodeBlock($indenter->indent($faker->randomHtml(2,1)));
+        //     $manager->persist($comments[$i]);
+        // }
 
-        // // Make changes
+        // // // Make changes
         $manager->flush();
     }
 }
