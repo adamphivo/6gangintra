@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,10 +18,15 @@ class SecurityController extends AbstractController
      * @Route("/subscribe", name="security_registration")
      */
     public function registration(Request $request, EntityManagerInterface $manager, 
-    UserPasswordEncoderInterface $encoder)
+    UserPasswordEncoderInterface $encoder, UserRepository $userRepo)
     {
         $user = new User();
 
+        if(!count($userRepo->findAll()))
+        {
+            $user->setRoles(["ROLE_ADMIN"]);
+        }
+        
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
