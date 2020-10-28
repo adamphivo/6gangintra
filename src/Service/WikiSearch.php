@@ -26,6 +26,10 @@ class WikiSearch
             $requestString
         );
 
+        /**
+         * @todo traitement des erreurs sur la requete (500, 404, ...)
+         */
+        
         $content = $reponse->getContent();
         $content = json_decode($content);
 
