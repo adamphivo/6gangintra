@@ -5,7 +5,6 @@
         .logoContainer {
             padding: 0;
             position: fixed;
-            top: 10px;
         }
 
         .logoContainer li {
@@ -135,7 +134,7 @@
         {% if app.user %}
         <div class="statusBar">
             <a href="#">
-                <p>{{ app.user.userName }} | {{ app.user.experience }} 🎉</p>
+                <p><span class="userName">{{ app.user.userName }}</span> | {{ app.user.experience }} 🎉</p>
             </a>
         </div>
         {% else %}

@@ -17,6 +17,10 @@
         margin-bottom: 1em;
         line-height: 2em;
     }
+
+    .leaderBoardUserName {
+        color: rgb(66, 108, 245);
+    }
 </style>
 
 {# Module #}
@@ -24,7 +28,7 @@
     <h2>🎉 leaderboard</h2>
     <ol>
         {% for user in leaderBoard %}
-            <li>{{ user.userName }} | {{ user.experience }}</li>
+            <li><span class="leaderBoardUserName">{{ user.userName }}</span> | {{ user.experience }}</li>
         {% endfor %}
     </ol>
 </div>
