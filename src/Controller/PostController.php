@@ -16,8 +16,8 @@ use App\Entity\Search;
 use App\Entity\Comment;
 use App\Entity\Category;
 use App\Form\PostType;
-
 use App\Form\CommentType;
+use App\Service\ExperienceManager;
 
 
 
@@ -77,7 +77,7 @@ class PostController extends AbstractController
     /**
      * @Route("/posts/{id}", name="full_post", requirements={"id"="\d+"})
      */
-    public function displaySpecificArticle(Request $request, PostRepository $postRepo, CommentRepository $commentRepo, UserRepository $userRepo, int $id)
+    public function displaySpecificArticle(Request $request, PostRepository $postRepo, CommentRepository $commentRepo, UserRepository $userRepo, ExperienceManager $expManager, int $id)
     {
         $post = $postRepo->getById($id);
         $comments = $commentRepo->findCommentsByPostId($post->getId());
@@ -94,6 +94,8 @@ class PostController extends AbstractController
             $comment = $form->getData();
             $comment->setUser($this->getUser());
             $em->persist($comment);
+            // handle experience shift
+            $expManager->createExperienceEvent($this->getUser(), $post, "comment");
             $em->flush();
             return $this->redirectToRoute('full_post', array('id' => $id));
         }
@@ -126,7 +128,7 @@ class PostController extends AbstractController
     /**
      * @Route("/posts/new", name="post_new")
      */
-    public function newPost(Request $request, UserRepository $userRepo)
+    public function newPost(Request $request, UserRepository $userRepo, ExperienceManager $expManager)
     {
         // Add a new article form
         $post = new Post();
@@ -139,6 +141,8 @@ class PostController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $post->setUser($this->getUser());
             $em->persist($post);
+            // handle experience shift
+            $expManager->createExperienceEvent($this->getUser(), $post, "post");
             $em->flush();
 
             return $this->redirectToRoute('full_post', array('id' => $post->getId()));

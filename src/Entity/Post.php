@@ -86,12 +86,18 @@ class Post
      */
     private $consultationCount;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ExperienceEvent::class, mappedBy="post", orphanRemoval=true)
+     */
+    private $experienceEvents;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->dateAdded = new \DateTimeImmutable();
         $this->consultationCount = 0;
+        $this->experienceEvents = new ArrayCollection();
     }
 
     // public function __construct()
@@ -263,6 +269,36 @@ class Post
     public function setConsultationCount(int $consultationCount): self
     {
         $this->consultationCount = $consultationCount;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ExperienceEvent[]
+     */
+    public function getExperienceEvents(): Collection
+    {
+        return $this->experienceEvents;
+    }
+
+    public function addExperienceEvent(ExperienceEvent $experienceEvent): self
+    {
+        if (!$this->experienceEvents->contains($experienceEvent)) {
+            $this->experienceEvents[] = $experienceEvent;
+            $experienceEvent->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperienceEvent(ExperienceEvent $experienceEvent): self
+    {
+        if ($this->experienceEvents->removeElement($experienceEvent)) {
+            // set the owning side to null (unless already changed)
+            if ($experienceEvent->getPost() === $this) {
+                $experienceEvent->setPost(null);
+            }
+        }
 
         return $this;
     }

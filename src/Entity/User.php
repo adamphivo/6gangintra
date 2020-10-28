@@ -84,12 +84,18 @@ class User implements UserInterface
      */
     private $subscribedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ExperienceEvent::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $experienceEvents;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->subscribedAt = new \DateTimeImmutable();
         $this->experience = 0;
+        $this->experienceEvents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,6 +279,36 @@ class User implements UserInterface
     public function setSubscribedAt(\DateTimeImmutable $subscribedAt): self
     {
         $this->subscribedAt = $subscribedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ExperienceEvent[]
+     */
+    public function getExperienceEvents(): Collection
+    {
+        return $this->experienceEvents;
+    }
+
+    public function addExperienceEvent(ExperienceEvent $experienceEvent): self
+    {
+        if (!$this->experienceEvents->contains($experienceEvent)) {
+            $this->experienceEvents[] = $experienceEvent;
+            $experienceEvent->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperienceEvent(ExperienceEvent $experienceEvent): self
+    {
+        if ($this->experienceEvents->removeElement($experienceEvent)) {
+            // set the owning side to null (unless already changed)
+            if ($experienceEvent->getUser() === $this) {
+                $experienceEvent->setUser(null);
+            }
+        }
 
         return $this;
     }
