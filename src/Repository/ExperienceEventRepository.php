@@ -19,32 +19,13 @@ class ExperienceEventRepository extends ServiceEntityRepository
         parent::__construct($registry, ExperienceEvent::class);
     }
 
-    // /**
-    //  * @return ExperienceEvent[] Returns an array of ExperienceEvent objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getLastActivities()
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
+            ->orderBy('e.madeAt', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?ExperienceEvent
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

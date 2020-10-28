@@ -1,0 +1,45 @@
+{% block lastActivities %}
+
+{% for activity in activities %}
+
+<style>
+
+    .lastActivities {
+        font-family: var(--logo-font);
+    }
+
+    .activity {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .userName {
+        color: rgb(66, 108, 245);
+    }
+
+    .lastActivitiesPostTitle {
+        background: white;
+        color: black;
+        padding: 0.2em;
+    }
+</style>
+<div class="lastActivities">
+    <ul>
+        <p class="activity">
+            <span class="userName">{{ activity.user.userName }}</span>
+                {% if activity.eventType == "comment" %}
+                    commented on 
+                {% elseif activity.eventType == "post" %}
+                    posted
+                {% endif %}
+            <a href={{ path("full_post", {id: (activity.post.id)}) }}>
+                <span class="lastActivitiesPostTitle">{{ activity.post.title }}</span>
+            </a>
+            and earned {{ activity.experienceShift }} 🎉
+            at {{ activity.madeAt|date('H:i')}}
+        </p>
+    </ul>
+</div>
+{% endfor %}
+
+{% endblock %}

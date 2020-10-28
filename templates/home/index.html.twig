@@ -32,6 +32,17 @@
         color: gray;
     }
 
+    .lastActivitiesContainer {
+        text-align: center;
+        margin-top: 1em;
+        margin-bottom: 5em;
+    }
+
+    .lastActivitiesContainer h2 {
+        font-family: var(--logo-font);
+        text-decoration: underline;
+    }
+
 </style>
 
 {# Home page #}
@@ -56,6 +67,14 @@
 </div>
 
 {# A random post #}
-{{ render(controller('App\\Controller\\PostController::displayRandomPost')) }}
+<div>
+    {{ render(controller('App\\Controller\\PostController::displayRandomPost')) }}
+</div>
+
+{# Latest Activities #}
+<div class="lastActivitiesContainer">
+    <h2 class="lastActivitiesSectionTitle">Recent activities</h2>
+    {{ render(controller('App\\Controller\\StatsController::displayLastActivities')) }}
+</div>
 
 {% endblock %}

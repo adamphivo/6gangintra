@@ -109,15 +109,42 @@
             padding: 1em;
         }
 
+        .statusBar {
+            position: fixed;
+            top: 0.5em;
+            right: 0.5em;
+            border: 1px solid white;
+            padding: 0.5em;
+            font-family: var(--logo-font);
+        }
+
+        .statusBar p {
+            margin: 0;
+        }
+
     </style>
 
     
     <div class="logoContainer">
-
         {# Logo #}
         <a class="logo" href={{ path('home')}}>
             <h1 class="homeLogo">6gang<span class="intra">intra</span></h1>
         </a>
+
+        {# User status bar #}
+        {% if app.user %}
+        <div class="statusBar">
+            <a href="#">
+                <p>{{ app.user.userName }} | {{ app.user.experience }} 🎉</p>
+            </a>
+        </div>
+        {% else %}
+        <div class="statusBar">
+            <a href="{{ path('security_login') }}">
+                <p>login</p>
+            </a>
+        </div>
+        {% endif %}
 
         {# Links #}
         <ul class="linkContainer">
@@ -125,20 +152,21 @@
 
             {# Connection Bouton #}
             {% if not app.user %}
-                <li><a href="{{ path('security_login') }}">connect</a>
+                <li><a href="{{ path('security_login') }}">login</a>
+            {% else %}
+                <li><a href="{{ path('security_logout') }}">logout</a>
             {% endif %}
 
-            {% if app.user %}
-            <li><a href="{{ path('security_logout') }}">disconnect</a>
+            <li><a href="{{ path('all_posts') }}">posts</a></li>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('admin')}}">admin</a></li>
             {% endif %}
 
-            <li><a href="{{ path('all_posts') }}">discover</a></li>
-            <li><a href="{{ path('admin')}}">admin</a></li>
-
+            {# we change the link according to the status #}
             {% if not app.user %}
                 <li class="write"><a href={{ path('security_login')}}>✍️</a></li>
-            {% endif %}
-            {% if app.user %}
+            {% else %}
                 <li class="write"><a href={{ path('post_new')}}>✍️</a></li>
             {% endif %}
         </ul>

@@ -13,7 +13,7 @@ class ExperienceManager
     
     private const SHIFTS = [
         "comment" => 20,
-        "post" => 100,
+        "post" => 50,
     ];
 
     public function __construct(EntityManagerInterface $entityManager)
