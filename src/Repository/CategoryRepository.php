@@ -28,4 +28,12 @@ class CategoryRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findAll()
+    {
+        return $this->createQueryBuilder('c')
+        ->orderBy("c.name", "ASC")
+        ->getQuery()
+        ->getResult();
+    }
 }

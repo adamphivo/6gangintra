@@ -41,12 +41,8 @@
     .lastActivitiesContainer h2 {
         font-family: var(--logo-font);
         text-decoration: underline;
-    }
-
-    .footerPlaceHolder {
-        background: rgb(5,14,34);
-        background: linear-gradient(180deg, rgba(5,14,34,1) 0%, rgba(0,0,0,1) 100%);
-        height: 100vh;
+        margin-top: 2em;
+        margin-bottom: 2em;
     }
 
 </style>
@@ -56,7 +52,7 @@
 
 {# Slogan #}
 <div class="welcomeSlogan">
-    <pre></code> 🎉 </code></pre>
+    <pre></code>{ 🎉 }</code></pre>
 </div>
 
 {# Random Quote #}
@@ -79,12 +75,7 @@
 
 {# Latest Activities #}
 <div class="lastActivitiesContainer">
-    <h2 class="lastActivitiesSectionTitle">Recent activities</h2>
+    <h2 class="lastActivitiesSectionTitle">happening now</h2>
     {{ render(controller('App\\Controller\\StatsController::displayLastActivities')) }}
 </div>
-
-{# Footer #}
-<div class="footerPlaceHolder">
-</div>
-
 {% endblock %}

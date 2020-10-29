@@ -10,6 +10,13 @@
         {% endblock %}
     </head>
     <body>
+        <style>
+        .footerPlaceHolder {
+        background: rgb(5,14,34);
+        background: linear-gradient(180deg, rgba(5,14,34,1) 0%, rgba(0,0,0,1) 100%);
+        height: 100vh;
+        }
+        </style>
         {# Navigation #}
         {{ render(controller('App\\Controller\\NavigationBarController::index'))}}
 
@@ -19,5 +26,8 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        {# Footer #}
+        <div class="footerPlaceHolder"></div>
     </body>
 </html>

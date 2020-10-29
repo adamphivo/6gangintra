@@ -3,6 +3,7 @@
     .search {
         text-align: center;
         margin-right: 1em;
+        margin-top: 1em;
     }
 
     .search input {
@@ -37,11 +38,15 @@
       margin-right: auto;
       margin-left: auto;
     }
+
+    .searchIcon {
+        width: 30px;
+    }
 </style>
 <form class="search" action={{ path('post_search') }} method="get">
     <div class="searchZone">
       <input placeholder="" name="say" id="say">
-      <button>🔍</button>
+      <button><img class="searchIcon" src="https://svg-clipart.com/svg/white/HaPBSoz-search-icon-white-vector.svg"></button>
     </div>
 </form>
 {% endblock %}
