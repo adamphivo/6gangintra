@@ -1,0 +1,34 @@
+@import url(https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap);
+/* Fonts */
+
+/* font-family: 'Syne Mono', monospace; */
+
+/* font-family: 'Roboto Mono', monospace; */
+
+:root {
+    --logo-font: 'Syne Mono', monospace;
+    --section-font: 'Roboto Mono', monospace;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: none;
+}
+
+body {
+    background-color: rgb(5, 14, 34);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLFVBQVU7O0FBRVYseUNBQXlDOztBQUd6QywyQ0FBMkM7O0FBRzNDO0lBQ0ksbUNBQW1DO0lBQ25DLHdDQUF3QztBQUM1Qzs7QUFFQTtJQUNJLFlBQVk7SUFDWixxQkFBcUI7QUFDekI7O0FBRUE7SUFDSSxTQUFTO0lBQ1QsVUFBVTtJQUNWLGdCQUFnQjtBQUNwQjs7QUFFQTtJQUNJLGdDQUFnQztJQUNoQyxZQUFZO0lBQ1osU0FBUztJQUNULFVBQVU7QUFDZCIsImZpbGUiOiJhcHAuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogRm9udHMgKi9cblxuLyogZm9udC1mYW1pbHk6ICdTeW5lIE1vbm8nLCBtb25vc3BhY2U7ICovXG5AaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1TeW5lK01vbm8mZGlzcGxheT1zd2FwJyk7XG5cbi8qIGZvbnQtZmFtaWx5OiAnUm9ib3RvIE1vbm8nLCBtb25vc3BhY2U7ICovXG5AaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1Sb2JvdG8rTW9ubyZkaXNwbGF5PXN3YXAnKTtcblxuOnJvb3Qge1xuICAgIC0tbG9nby1mb250OiAnU3luZSBNb25vJywgbW9ub3NwYWNlO1xuICAgIC0tc2VjdGlvbi1mb250OiAnUm9ib3RvIE1vbm8nLCBtb25vc3BhY2U7XG59XG5cbmEge1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG5cbmh0bWwge1xuICAgIG1hcmdpbjogMDtcbiAgICBwYWRkaW5nOiAwO1xuICAgIG92ZXJmbG93LXg6IG5vbmU7XG59XG5cbmJvZHkge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig1LCAxNCwgMzQpO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBtYXJnaW46IDA7XG4gICAgcGFkZGluZzogMDtcbn1cblxuIl0sInNvdXJjZVJvb3QiOiIifQ==*/
