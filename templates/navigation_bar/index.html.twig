@@ -135,7 +135,7 @@
         {% if app.user %}
         <div class="statusBar">
             <a href="#">
-                <p><span class="userName">{{ app.user.userName }}</span> | {{ app.user.experience }} 🎉</p>
+                <p><a class="userName" href="{{ path("profile", {id:(app.user.id)}) }}">{{ app.user.userName }}</a> | {{ app.user.experience }} 🎉</p>
             </a>
         </div>
         {% else %}
