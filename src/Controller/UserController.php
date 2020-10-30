@@ -11,16 +11,6 @@ use App\Entity\User;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/users/{id}", name="user_profile", requirements={"id"="\d+"})
-     */
-    public function displayUserProfile(): Response
-    {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
-
-    /**
      * @Route("/users/delete/{id}", name="user_delete", requirements={"id"="\d+"})
      */
     public function deleteUser(UserRepository $userRepo ,int $id)

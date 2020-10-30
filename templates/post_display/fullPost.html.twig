@@ -264,7 +264,7 @@
             {# User Info #}
             {% if post.User %}
                 <p class="authorName">
-                    {{ post.User.userName }}
+                    <a class="authorName" href="{{ path("profile", {id:(post.user.id)}) }}">{{ post.User.userName }}</a>
                     <span class="authorExperience">
                         ({{ post.User.Experience }})
                     </span>

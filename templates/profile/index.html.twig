@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}6gang - {{ user.userName }}'s profile {% endblock %}
+
+{% block body %}
+<style>
+    .userProfileContainer {
+        text-align: center;
+        font-family: var(--logo-font);
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .userProfileContainer h2 {
+        text-decoration: underline;
+    }
+
+    .userName {
+        color: blue;
+    }
+
+    .userRecap {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    .dangerZone {
+        color: red;
+        border: 1px solid red;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2em;
+        margin-top: 2em;
+    }
+
+    .delete {
+        color: red;
+    }
+</style>
+
+<div class="userProfileContainer"> 
+    <h1><span class="userName">{{ user.userName }}</span>'s profile</h1>
+    <div class="userRecap">
+        <div>
+            <h2>posts</h2>
+            {% for post in user.posts %}
+            <p>
+                {{ post.dateAdded|date("d/m/Y") }}
+                <span>{{ post.title }}</span>
+            </p>
+            {% endfor %}
+        </div>
+        <div>
+            <h2>comments</h2>
+            {% for comment in user.comments %}
+            <p>
+                {{ comment.post.title }}
+            </p>
+            {% endfor %}
+        </div>
+        <div>
+            <h2>experience shifts</h2>
+            {% for experienceEvent in user.experienceEvents %}
+                <p>
+                    {{ experienceEvent.experienceShift }}🎉
+                    {{ experienceEvent.madeAt|date("d/m/Y H:i") }}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+    {% if app.user %}
+        {% if app.user.id == user.id %}
+        <div class="dangerZone">
+            <h2>Danger Zone</h2>
+            <a class="delete" href="{{ path("user_delete", {id: (user.id) })}}">Delete Account</a>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

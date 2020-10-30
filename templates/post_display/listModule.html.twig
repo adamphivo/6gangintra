@@ -84,7 +84,7 @@
                                 {% endfor %}
                             </div>
 
-                        <a class="lPuserName" href="{{ post.user.id }}">{{ post.user.userName }}</a>
+                        <a class="lPuserName" href="{{ path("profile", {id:(post.user.id)}) }}">{{ post.user.userName }}</a>
                     </div>
                 {% endfor %}
             </ol>

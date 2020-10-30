@@ -112,7 +112,7 @@
                                 {% endfor %}
                             </div>
                         {% if post.user %}
-                            <a class="lPuserName" href="{{ post.user.id }}">✍️ {{ post.user.userName }}</a>
+                            <a class="lPuserName" href="{{ path("profile", {id:(post.user.id)}) }}">✍️ {{ post.user.userName }}</a>
                         {% endif %}
                         {% if not post.user %}
                             <p class="lPuserName">John Doe</p>
