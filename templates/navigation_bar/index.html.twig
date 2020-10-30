@@ -165,9 +165,9 @@
 
             {# we change the link according to the status #}
             {% if not app.user %}
-                <li class="write"><a href={{ path('security_login')}}>✍️</a></li>
+                <li class="write"><a href={{ path('security_login')}}>✍️ New Post</a></li>
             {% else %}
-                <li class="write"><a href={{ path('post_new')}}>✍️</a></li>
+                <li class="write"><a href={{ path('post_new')}}>✍️ New Post</a></li>
             {% endif %}
         </ul>
 
